@@ -53,6 +53,8 @@ function genGrid(data) {
 function onSongClick(href) {
     div_id = "#item_"+getSpotifyId(href);
 
+
+
     // Remove song
     if ($(div_id).css("opacity") === "0.5") {
         $(div_id).css("background-color", "rgba(0, 0, 0, 0)");
@@ -70,7 +72,7 @@ $(function() {
     $("#searchBar").submit(
         function (e) {
         e.preventDefault(); // this will prevent from submitting the form.
-        $.mobile.changePage($("#page_search"), { transition: "slideup"});
+        $.mobile.changePage($("#page_search"),{ transition: "slideright"});
         search_string = $("#searchinput1").val();
         searchSong(search_string);
 
