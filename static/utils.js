@@ -99,7 +99,7 @@ function generateQueue(data) {
             color = "even";
         }
 
-        imgSrc = "https://graph.facebook.com/"+track[i].adder+"/picture?width=100&height=100";
+        imgSrc = "https://graph.facebook.com/"+tracks[i].adder+"/picture?width=100&height=100";
         
         builder += "<div class=\"queueContainer " + color + "\">";
         builder += "<div class=\"queueImgContainer\">";
