@@ -8,7 +8,7 @@ function onFBConnected() {
 		$.mobile.hidePageLoadingMsg();
 	});
 	checkServer();
-	setInterval(checkServer, 7000);
+	setInterval(checkServer, 10000);
 }
 
 function onFBLogin() {
