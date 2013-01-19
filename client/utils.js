@@ -37,7 +37,7 @@ function genGrid(data) {
 
 
     for(var i=0; i < print_num; i++) {
-        builder += "<div class=\"ui-grid-a\">";
+        builder += "<div onClick=\"addSong()\" class=\"ui-grid-a\">";
         builder += "<div class=\"ui-block-a\">";
         builder += data.tracks[i].name;
         builder += "</div>";
@@ -48,6 +48,10 @@ function genGrid(data) {
     }
 
     return builder;
+}
+
+function addSong(id) {
+    alert(id);
 }
 
 $(function() {
