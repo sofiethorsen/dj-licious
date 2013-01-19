@@ -3,7 +3,6 @@ var _playlistId = "";
 
 function generateQueue(data) {
     var builder = "";
-    var imgSrc = "http://www.beatmyday.com/wp-content/uploads/2012/07/Florence-+-The-Machine-Spectrum-Say-My-Name.jpeg";
     
 
     tracks = data.result.tracks;
@@ -15,6 +14,8 @@ function generateQueue(data) {
         } else {
             color = "even";
         }
+
+        imgSrc = "https://graph.facebook.com/"+track[i].adder+"/picture?width=100&height=100";
         
         builder += "<div class=\"queueContainer " + color + "\">";
         builder += "<div class=\"queueImgContainer\">";
@@ -85,7 +86,7 @@ $(function() {
     _playlistId = window.location.hash.substring(1);
 
     console.log("id:" + _playlistId);
-    checkServer();
+    
 
 
 

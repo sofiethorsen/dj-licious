@@ -43,7 +43,7 @@ function getPlaylist() {
 function onResultPlaylist(data) {
 	console.log("onResultPlaylist");
 
-	$("#mainTextContainer").html(data.result.currently_playing.track);
+	$("#mainTextContainer").html(data.result.currently_playing.track + " by " + data.result.currently_playing.artist);
 	
 	$("#queueList").html(generateQueue(data));
 }
