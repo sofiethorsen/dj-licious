@@ -16,7 +16,7 @@ function generateQueue(data) {
         builder += "\"></div>";
 
         builder += "<div class=\"queueTextContainer\">";
-        builder += tracks[i].name;
+        builder += tracks[i].track;
         builder += "</br>"
         builder += tracks[i].artist;
         builder += "</div>";
@@ -73,7 +73,6 @@ function onSongClick(href) {
 
 
 $(function() {
-	$("#queueList").append(generateQueue());
     $("#searchBar").submit(
         function (e) {
         e.preventDefault(); // this will prevent from submitting the form.

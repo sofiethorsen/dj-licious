@@ -24,7 +24,12 @@ setInterval(checkServer, 5000);
 
 
 function addSong(href) {
-	callAPI("add-track/?playlist_id"+_playlistId+"=&facebook_id="+FB.user.id+"&artist=test&album=test&uri="+href+"&track=test", console.log);
+	track = TRACKS[getSpotifyId(href)];
+	callAPI("add-track/?playlist_id"+_playlistId+"=&facebook_id="+FB.user.id+"&artist="+track.artist+"&album="+track.album+"&uri="+href+"&track="+track.name, onResultAddsong);
+}
+
+function onResultAddsong(data){
+	console.log("onResultAddsong");
 }
 
 function removeSong(href) {
@@ -38,6 +43,9 @@ function getPlaylist() {
 
 function onResultPlaylist(data) {
 	console.log("onResultPlaylist");
+
+	$("#mainTextContainer").html(data.result.currently_playing.track);
+	
 	$("#queueList").html(generateQueue(data));
 }
 
