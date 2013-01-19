@@ -22,7 +22,7 @@ function checkServer(){
 
 
 function addSong(href) {
-	track = TRACKS[getSpotifyId(href)];
+	track = _TRACKS[getSpotifyId(href)];
 	callAPI("add-track/?playlist_id"+_playlistId+"=&facebook_id="+FB.user.id+"&artist="+track.artist+"&album="+track.album+"&uri="+href+"&track="+track.name, onResultAddsong);
 }
 
