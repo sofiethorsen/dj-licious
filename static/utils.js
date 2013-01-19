@@ -113,8 +113,8 @@ function generateQueue(data) {
         builder += "</div>";
 
         builder += "<div class=\"queueVoteContainer\">";
-        builder += "<a href='#' onClick='vote(\""+tracks[i].href+"\", 1)'><div class=\"voteUp\"></div></a>";
-        builder += "<a href='#' onClick='vote(\""+tracks[i].href+"\", -1)'><div class=\"voteDown\"></div></a>";
+        builder += "<a href='#' onClick='vote(\""+tracks[i].uri+"\", 1)'><div class=\"voteUp\"></div></a>";
+        builder += "<a href='#' onClick='vote(\""+tracks[i].uri+"\", -1)'><div class=\"voteDown\"></div></a>";
         builder += "</div>";
         builder += "</div>";
     }
@@ -130,7 +130,7 @@ function genGrid(data) {
 
 
     for(var i=0; i < print_num; i++) {
-        builder += "<div id=\"item_"+ getSpotifyId(data.tracks[i].href) +"\" onClick=\"onSongClick(\'"+data.tracks[i].href+"\')\" class=\"ui-grid-a\">";
+        builder += "<div id=\"item_"+ getSpotifyId(data.tracks[i].href) +"\" ontouch=\"onSongClick(\'"+data.tracks[i].href+"\')\" onClick=\"onSongClick(\'"+data.tracks[i].href+"\')\" class=\"ui-grid-a\">";
         builder += "<div class=\"ui-block-a\">";
         builder += data.tracks[i].name;
         builder += "</div>";
