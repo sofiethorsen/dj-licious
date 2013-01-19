@@ -18,7 +18,7 @@ def create_playlist():
         playlist = Playlist(backup_playlist=backup_playlist_arg).save()
         playlist_query = Playlist.objects(backup_playlist=backup_playlist_arg).first()
         result = str(playlist_query.id)
-
+    # result='50faf48ccf1e8c4ad70aa464'
     return jsonify(result=result)
 
 
@@ -34,14 +34,54 @@ def get_playlist():
     # else:
     #     playlist = Playlist.objects(playlist_id=playlist_id).first()
     playlist = Playlist.objects(id=playlist_arg).first()
-    playlist.update_que()
+
+    if playlist.next_track:        
+        next_track = dict(
+            adder=playlist.next_track['adder'],
+            artist=playlist.next_track['artist'],
+            album=playlist.next_track['album'],
+            track=playlist.next_track['track'],
+            added=playlist.next_track['added'],
+            vote_rating=playlist.next_track['vote_rating'],
+            voters=playlist.next_track['voters'],
+            uri=playlist.next_track['uri'])
+    else:
+        next_track = dict(
+            adder='',
+            artist='',
+            album='',
+            track='',
+            added='',
+            vote_rating='',
+            voters='',
+            uri='')
+
+    if playlist.currently_playing:        
+        currently_playing = dict(
+            adder=playlist.currently_playing['adder'],
+            artist=playlist.currently_playing['artist'],
+            album=playlist.currently_playing['album'],
+            track=playlist.currently_playing['track'],
+            added=playlist.currently_playing['added'],
+            vote_rating=playlist.currently_playing['vote_rating'],
+            voters=playlist.currently_playing['voters'],
+            uri=playlist.currently_playing['uri'])
+    else:
+        currently_playing = dict(
+            adder='',
+            artist='',
+            album='',
+            track='',
+            added='',
+            vote_rating='',
+            voters='',
+            uri='')
 
     result = dict(
         playlist=str(playlist.id),
-        currently_playing=str(playlist.currently_playing),
-        next_track=str(playlist.next_track),
-        tracks=str(playlist.tracks)
-        )
+        currently_playing=currently_playing,
+        next_track=next_track,
+        tracks=playlist.tracks)
 
     return jsonify(result=result)
 
@@ -65,7 +105,7 @@ def next_track():
     playlist_arg = request.args.get('playlist_id')
 
     playlist = Playlist.objects(id=playlist_arg).first()
-    playlist.update_que()
+    playlist.get_next_track()
     next_track = playlist.next_track
     result = dict(track=next_track['track'], artist=next_track['artist'], album=next_track['album'], uri=next_track['uri'])
     return jsonify(result=result)
