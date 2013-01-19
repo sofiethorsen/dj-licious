@@ -42,13 +42,13 @@
 .voteUp{
 	width: 30px;
 	height: 30px;
-	background-image: url("{{ url_for('static', filename='img/upvote.png') }}");
+	background-image: url("http://bok.alexanderheldt.se:8080/static/img/upvote.png");
 }
 
 .voteDown {
 	width: 30px;
 	height: 30px;
-	background-image: url("{{ url_for('static', filename='img/downvoet.png') }}");
+	background-image: url("http://bok.alexanderheldt.se:8080/static/img/downvote.png");
 }
 
 
