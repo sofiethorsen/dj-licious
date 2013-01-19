@@ -7,7 +7,7 @@ var _playlistId = "50fad3edcf1e8c46163c0d7d";
 
 //TODO: Remove this
 var user_id = "1337";
-
+ 
 
 function callAPI(api_function, callback_function) {
 	request = "http://bok.alexanderheldt.se:8080/api/"+api_function;

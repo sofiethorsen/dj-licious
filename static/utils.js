@@ -18,10 +18,13 @@ function generateQueue() {
         builder += "</div>";
 
         builder += "<div class=\"queueVoteContainer\">";
-        builder += "<img src=\"img/upvote.png\" width=\"30\" height=\"30\"/>";
-        builder += "<img src=\"img/downvote.png\" width=\"30\" height=\"30\">";
+        builder += "<img src=\"{{ url_for('static', filename='img/upvote.png') }}\" width=\"30\" height=\"30\"/>";
+        builder += "<img src=\"{{ url_for('static', filename='img/downvote.png') }}\" width=\"30\" height=\"30\">";
         builder += "</div>";
         builder += "</div>";
+
+
+
     }
 
     return builder;
