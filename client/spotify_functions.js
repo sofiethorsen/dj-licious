@@ -4,7 +4,10 @@ function searchSong(search_string) {
 	needle = encodeURIComponent(search_string.toLowerCase());
 	// Sends the request to spotify and handle the result with the function onSpotifyResult
 	$.getJSON("http://ws.spotify.com/search/1/track.json?q="+needle,
-		function(data){onResult(data);});
+		function(data){onSpotifyResult(data);});
+
+	//$.mobile.showPageLoadingMsg();
+	//$.mobile.hidePageLoadingMsg();
 }
 
 // Runs when data from Spotify Web API is loaded
