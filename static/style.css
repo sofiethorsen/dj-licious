@@ -39,6 +39,14 @@
 	float: right;
 }
 
+.odd {
+	background-color: #F0F0F0;
+}
+
+.even {
+	background-color: #EBEBEB;
+}
+
 .ui-grid-a {
 
 }

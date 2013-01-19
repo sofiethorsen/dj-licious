@@ -9,7 +9,14 @@ function generateQueue(data) {
     tracks = data.result.tracks;
 
     for(var i=0; i < tracks.length; i++) {
-        builder += "<div class=\"queueContainer\">";
+        var color;
+        if(i % 2 == 0) {
+           color  = "odd";
+        } else {
+            color = "even";
+        }
+        
+        builder += "<div class=\"queueContainer " + color + "\">";
         builder += "<div class=\"queueImgContainer\">";
         builder += "<img style=\"width: 100px; height: 100px\" src=\" ";
         builder += imgSrc;
