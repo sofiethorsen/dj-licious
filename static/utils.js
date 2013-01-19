@@ -1,5 +1,5 @@
 var _TRACKS = [];
-
+var _playlistId = "";
 
 function generateQueue(data) {
     var builder = "";
@@ -74,8 +74,11 @@ function onSongClick(href) {
 
 $(function() {
 
-      console.log("HASH:" + window.location.hash);
-    
+
+    _playlistId = window.location.hash.substring(1);
+
+    console.log("id:" + _playlistId);
+    checkServer();
 
 
 

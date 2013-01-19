@@ -1,6 +1,6 @@
 
 var _lastestupdate = "";
-var _playlistId = "50fae444cf1e8c48d218e6c8";
+
 
 function callAPI(api_function, callback_function) {
 	request = "http://bok.alexanderheldt.se:8080/api/"+api_function;
@@ -20,7 +20,6 @@ function checkServer(){
 	getPlaylist();
 }
 
-setInterval(checkServer, 5000);
 
 
 function addSong(href) {
