@@ -49,7 +49,7 @@ function searchSong(search_string) {
 
 // Runs when data from Spotify Web API is loaded
 function onSpotifyResult(result) {
-    data = parseSpotifyData(result);
+    var data = parseSpotifyData(result);
     $("#searchResult").html("");
     $("#searchResult").append(genGrid(data));
     $.mobile.hidePageLoadingMsg();
@@ -57,7 +57,7 @@ function onSpotifyResult(result) {
 
 
 function parseSpotifyData(result) {
-    data = {};
+    var data = {};
     data.tracks = [];
 
     data.total_num_results = result.info.num_results;
@@ -66,7 +66,7 @@ function parseSpotifyData(result) {
     console.log(result);
     for (var i=0;i<data.num_results;i++)
     { 
-        track = {};
+        var track = {};
         track.artist = result.tracks[i].artists[0].name;
         track.name = result.tracks[i].name;
 
@@ -88,7 +88,7 @@ function getSpotifyId(href) {
 function generateQueue(data) {
     var builder = "";
     
-    tracks = data.result.tracks;
+    var tracks = data.result.tracks;
 
     for(var i=0; i < tracks.length; i++) {
         var color;
@@ -98,7 +98,7 @@ function generateQueue(data) {
             color = "even";
         }
 
-        imgSrc = "https://graph.facebook.com/"+tracks[i].adder+"/picture?width=100&height=100";
+        var imgSrc = "https://graph.facebook.com/"+tracks[i].adder+"/picture?width=100&height=100";
         
         builder += "<div class=\"queueContainer " + color + "\">";
         builder += "<div class=\"queueImgContainer\">";
