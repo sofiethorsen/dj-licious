@@ -6,16 +6,12 @@ function callAPI(api_function, callback_function) {
 	request = "http://bok.alexanderheldt.se:8080/api/"+api_function;
 	console.log("Called function: " + api_function);
 	$.getJSON(request, function(data){
-		console.log(data);
+		console.log("Result: " + data);
 		callback_function(data);
 	});
 }
 
-
-
 function checkServer(){
-	//Check if the current timestamp is newer then _lastestupdate
-  	console.log("Checking database for changes...");
 	getPlaylist();
 }
 

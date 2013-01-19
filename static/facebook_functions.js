@@ -7,7 +7,7 @@ function onFBConnected() {
 		$.mobile.changePage( ($("#page_home")));
 		$.mobile.hidePageLoadingMsg();
 	});
-	checkServer();
+	
 	setInterval(checkServer, 10000);
 }
 

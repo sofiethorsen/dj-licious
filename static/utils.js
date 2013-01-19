@@ -3,7 +3,7 @@ var _playlistId = "";
 
 
 $(function() {
-
+    checkServer();
     _playlistId = window.location.hash.substring(1);
 
     console.log("Following playlist id:" + _playlistId);
