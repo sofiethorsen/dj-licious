@@ -27,12 +27,32 @@ function generateQueue() {
     return builder;
 }
 
+function genGrid() {
+    var builder = "";
+    var name = "songname";
+    var artist = "artist";
+
+    for(var i=0; i < 5; i++) {
+        builder += "<div class=\"ui-grid-a\">";
+        builder += "<div class=\"ui-block-a\">";
+        builder += name;
+        builder += "</div>";
+        builder += "<div class=\"ui-block-b\">";
+        builder += artist;
+        builder += "</div>";
+        builder += "</div>";
+    }
+
+    return builder;
+}
+
 $(function() {
 	$("#queueList").append(generateQueue());
     $("#searchBar").submit(
         function (e) {
         e.preventDefault(); // this will prevent from submitting the form.
         $.mobile.changePage( ($("#page_search")));
+        $("#searchResult").append(genGrid());
         return false;
     });
 });
