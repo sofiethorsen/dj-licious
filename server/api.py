@@ -8,53 +8,72 @@ app = Flask(__name__)
 db = connect('musichack', port=27017)
 
 @app.route('/api/create-playlist/<backup_id>/')
-def create_playlist(backup_id=None):
-    playlist = Playlist(backup_playlist=backup_id).save()
-    result = playlist._id
+def create_playlist(backup_id):
+    playlist_query = Playlist.objects(backup_playlist=backup_id).first()
+    if playlist_query:
+        result = str(playlist_query.id)
+    else:
+        playlist = Playlist(backup_playlist=backup_id).save()
+        playlist_query = Playlist.objects(backup_playlist=backup_id).first()
+        result = str(playlist_query.id)
+
     return jsonify(result=result)
+
+@app.route('/api/get_next_song/<playlist_id>/')
+def get_next_song(playlist_id):
+    playlist = Playlist.objects(id=playlist_id).first()
+
+    track = dict(
+        name='I Turn My Camera On',
+        artist='Spoon',
+        album='Gimme Fiction',
+        uri='spotify:track:09k5Qyysx5RnXLqamvdYEN')
+
+    return jsonify(track=track)
 
 
 @app.route('/api/get-playlist/<playlist_id>/')
 def get_playlist(playlist_id):    
-    sort_arg = request.args.get('sorted-by')
-    if sort_arg == 'date':
-        pass
+    # sort_arg = request.args.get('sorted-by')
+    # if sort_arg == 'date':
+    #     pass
 
-        playlist = Playlist.objects(playlist_id=playlist_id).first()
-        playlist = sorted(playlist.tracks, key=lambda k: k['upvotes'])
-    else:
-        playlist = Playlist.objects(playlist_id=playlist_id).first()
+    #     playlist = Playlist.objects(playlist_id=playlist_id).first()
+    #     playlist = sorted(playlist.tracks, key=lambda k: k['upvotes'])
+    # else:
+    #     playlist = Playlist.objects(playlist_id=playlist_id).first()
+    playlist = Playlist.objects(id=playlist_id).first()
 
     result = dict(
-        playlist=playlist.playlist_id,
-        currently_playing=playlist.currently_playing,
-        next_track=playlist.next_track,
-        tracks=playlist.tracks)
+        playlist=str(playlist.id),
+        currently_playing=str(playlist.currently_playing),
+        next_track=str(playlist.next_track),
+        tracks=str(playlist.tracks)
+        )
 
     return jsonify(result=result)
 
 
-@app.route('/api/add-track/<playlist_id>/<track_id>/')
-def add_track(playlist_id, track_id):
-    playlist = Playlist.objects(playlist_id=playlist_id).first()
-    playlist.add_track(track_id)
-    return jsonify(result=None)
+@app.route('/api/add-track/<playlist_id>/<facebook_id>/<track_id>/')
+def add_track(playlist_id, facebook_id, track_id):
+    playlist = Playlist.objects(id=playlist_id).first()
+    playlist.add_track(facebook_id, track_id)
+    return jsonify(result='Added track.')
 
 
 @app.route('/api/next-track/<playlist_id>')
 def next_track(playlist_id):
-    playlist = Playlist.objects(playlist_id=playlist_id).first()
-    next_track = playlist.next_track()
-    result = None
+    playlist = Playlist.objects(id=playlist_id).first()
+    next_track = playlist.check_next_track()
+    result = dict(track_name='', track_artist='', track_album='', track_uri='')
     return jsonify(result=result)
 
 
-@app.route('/api/vote/<playlist_id>/<track_id>/<facebook_id>')
-def vote(playlist_id, track_id, facebook_id):
-    playlist = Playlist.objects(playlist_id=playlist_id).first()
-    playlist.vote(track_id, facebook_id)
-    return jsonify(result=None)
-
+@app.route('/api/vote/<playlist_id>/<track_id>/<facebook_id>/<vote>')
+def add_vote(playlist_id, track_id, facebook_id, vote):
+    playlist = Playlist.objects(id=playlist_id).first()
+    playlist.vote(track_id, facebook_id, vote)
+    return jsonify(result='Voted on track.')
 
 
 @app.route('/api/test/')
