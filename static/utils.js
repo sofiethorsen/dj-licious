@@ -1,13 +1,14 @@
 var _TRACKS = [];
 
 
-function generateQueue() {
+function generateQueue(data) {
     var builder = "";
     var imgSrc = "http://www.beatmyday.com/wp-content/uploads/2012/07/Florence-+-The-Machine-Spectrum-Say-My-Name.jpeg";
-    var name = "Spectrum (Say My Name)";
-    var artist = "Florence + The Machine";
+    
 
-    for(var i=0; i < 4; i++) {
+    tracks = data.result.tracks;
+
+    for(var i=0; i < tracks.length; i++) {
         builder += "<div class=\"queueContainer\">";
         builder += "<div class=\"queueImgContainer\">";
         builder += "<img style=\"width: 100px; height: 100px\" src=\" ";
@@ -15,9 +16,9 @@ function generateQueue() {
         builder += "\"></div>";
 
         builder += "<div class=\"queueTextContainer\">";
-        builder += name;
+        builder += tracks[i].name;
         builder += "</br>"
-        builder += artist;
+        builder += tracks[i].artist;
         builder += "</div>";
 
         builder += "<div class=\"queueVoteContainer\">";
@@ -63,6 +64,7 @@ function onSongClick(href) {
     }
     // Add song
     else { 
+        addSong(href);
         $(div_id).css("background-color", "lightgreen");
         $(div_id).css("opacity", "0.5");
     }

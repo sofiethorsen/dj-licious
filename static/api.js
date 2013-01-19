@@ -20,7 +20,7 @@ function checkServer(){
 	getPlaylist();
 }
 
-setInterval(checkServer, 2000);
+setInterval(checkServer, 5000);
 
 
 function addSong(href) {
@@ -33,7 +33,12 @@ function removeSong(href) {
 
 
 function getPlaylist() {
-	callAPI("get-playlist/?playlist_id="+_playlistId, console.log);
+	callAPI("get-playlist/?playlist_id="+_playlistId, onResultPlaylist);
+}
+
+function onResultPlaylist(data) {
+	console.log("onResultPlaylist");
+	$("#queueList").html(generateQueue(data));
 }
 
 // Vote for a track
