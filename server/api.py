@@ -11,13 +11,13 @@ db = connect('musichack', port=27017)
 def create_playlist(backup_id):
     playlist_query = Playlist.objects(backup_playlist=backup_id).first()
     if playlist_query:
-        result = str(playlist_query.id)
+        playlist_id = str(playlist_query.id)
     else:
         playlist = Playlist(backup_playlist=backup_id).save()
         playlist_query = Playlist.objects(backup_playlist=backup_id).first()
-        result = str(playlist_query.id)
+        playlist_id = str(playlist_query.id)
 
-    return jsonify(result=result)
+    return jsonify(playlist_id=playlist_id)
 
 @app.route('/api/get_next_song/<playlist_id>/')
 def get_next_song(playlist_id):
