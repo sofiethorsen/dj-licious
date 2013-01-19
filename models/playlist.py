@@ -49,13 +49,36 @@ class Playlist(Document):
         # if len(votee_matches) == 0:
         for i, track in enumerate(self.tracks):
             if track['uri'] == uri:
-                if track['voters'][0]['votee'] == facebook_id:
-                    self.tracks[i]['voters'][0]['vote'] = int(vote)
-                    print 'updated vote.'
-                else:                            
+                has_voted = False
+                track['vote_rating'] = 0
+                for i, votee in enumerate(track['voters']):
+                    if votee['votee'] == facebook_id:
+                        self.tracks[0]['voters'][i]['vote'] = int(vote)
+                        has_voted = True
+                        print 'updated vote.'
+
+                if not has_voted:
                     track['voters'].append(dict(votee=facebook_id, vote=int(vote)))
                     print 'added vote.'
-            track['vote_rating'] += int(vote)
+ 
+        for i, track in enumerate(self.tracks):
+            track['vote_rating'] = 0
+            for vote in track['voters']:
+                print vote['vote']
+                self.tracks[i]['vote_rating'] += int(vote['vote'])
+                # if track['voters'][0]['votee'] == facebook_id:
+                #     self.tracks[i]['voters'][0]['vote'] = int(vote)
+                #     print 'updated vote.'
+                # else:
+                #     votee_matches = [votee['votee'] for votee in track_matches[0]['voters'] if votee['votee'] == facebook_id]
+                #     print 
+                #     track['voters'].append(dict(votee=facebook_id, vote=int(vote)))
+                #     print 'added vote.'
+            # for votee in track['voters']:
+            #     print votee
+                # track['vote_rating'] += int(vote)
+
+            # track['vote_rating'] += int(vote)
 
         self.update_que()
         super(Playlist, self).save()
@@ -69,15 +92,25 @@ class Playlist(Document):
     #         self.update_que()
 
     def update_que(self):
-        self.tracks = sorted(self.tracks, key=lambda k: (k['vote_rating'], k['added']))
+        # self.tracks = sorted(self.tracks, key=lambda k: (k['vote_rating'], k['added']))
 
         if len(self.tracks) <= 0:
-            self.currently_playing = dict(uri='next track on spotify playlist')
-            self.next_track = dict(uri='next track on spotify playlist')
+            pass
+            # track = dict(
+            #     artist='klas',
+            #     album='best album',
+            #     track='lat 1',
+            #     uri='heftig uri',
+            #     voters=[dict(votee='goran', vote=1)],
+            #     vote_rating=0,
+            #     added=datetime.utcnow().strftime('%Y-%-m-%d %H:%M:%S'))
+
+            # self.currently_playing = self.tracks.append(track)
+            # self.next_track = self.tracks[0]
         else:
             self.currently_playing = self.tracks[0]
             self.next_track = self.tracks[0]
-            self.tracks.pop(0)
+            # self.tracks.pop(0)
 
         super(Playlist, self).save()
 
