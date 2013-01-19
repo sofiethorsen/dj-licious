@@ -17,11 +17,10 @@ function callAPI(api_function, callback_function) {
 function checkServer(){
 	//Check if the current timestamp is newer then _lastestupdate
   	console.log("Checking database for changes...");
-  	alert("HE");
-	//getPlaylist();
+	getPlaylist();
 }
 
-setInterval(checkServer, 500);
+setInterval(checkServer, 2000);
 
 
 function addSong(href) {
