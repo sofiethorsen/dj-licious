@@ -9,8 +9,33 @@
 }
 
 #mainTextContainer {
-	padding-left: 5px;
-	padding-top: 2px;
+	padding-left: 15px;
 	line-height: 200%;
 	float: left;
+}
+
+.queueContainer {
+	height: 100px;
+	width: 100%;
+	position: relative;
+}
+
+.queueImgContainer {
+	float: left;
+}
+
+.queueTextContainer {
+	height: 100px;
+	padding-left: 15px;
+	line-height: 200%;
+	float: left;
+}
+
+.queueVoteContainer {
+	position: absolute;
+	padding-left: 15px;
+	width: 200px;
+	bottom: 0px;
+	right: 0px;
+	color: red;
 }
