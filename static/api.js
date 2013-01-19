@@ -23,7 +23,6 @@ function vote(href, vote) {
 }
 
 function onVoteResult(data){
-	console.log(data);
 }
 
 
