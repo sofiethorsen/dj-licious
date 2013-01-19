@@ -74,11 +74,8 @@ function onSongClick(href) {
 
 $(function() {
 
-    if(window.location.hash) {
-      console.log(window.location.hash);
-    } else {
-      // Fragment doesn't exist
-    }
+      console.log("HASH:" + window.location.hash);
+    
 
 
 
