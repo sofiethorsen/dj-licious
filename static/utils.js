@@ -65,6 +65,8 @@ function onSongClick(href) {
     }
 }
 
+
+
 $(function() {
 	$("#queueList").append(generateQueue());
     $("#searchBar").submit(
@@ -114,7 +116,7 @@ function parseSpotifyData(result) {
         track.artist = result.tracks[i].artists[0].name;
         track.name = result.tracks[i].name;
 
-
+        track.album = result.tracks[i].album.name;
         track.href = result.tracks[i].href;
 
         data.tracks[i] = track;

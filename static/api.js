@@ -1,13 +1,6 @@
 
 var _lastestupdate = "";
-var _playlistId = "50fad3edcf1e8c46163c0d7d";
-
-
-//http://bok.alexanderheldt.se:8080/api/
-
-//TODO: Remove this
-var user_id = "1337";
- 
+var _playlistId = "50fae543cf1e8c48dcd6e42b";
 
 function callAPI(api_function, callback_function) {
 	request = "http://bok.alexanderheldt.se:8080/api/"+api_function;
@@ -28,6 +21,16 @@ function checkServer(){
 	getPlaylist();
 }
 
+
+
+function addSong(href) {
+
+	callAPI("add-track/?playlist_id"+_playlistId+"=&facebook_id="+FB.user.id+"&artist=test&album=test&uri="+href+"&track=test", console.log);
+}
+
+function removeSong(href) {
+    
+}
 
 
 function getPlaylist() {
