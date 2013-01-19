@@ -34,7 +34,7 @@ def get_playlist():
     # else:
     #     playlist = Playlist.objects(playlist_id=playlist_id).first()
     playlist = Playlist.objects(id=playlist_arg).first()
-    playlist.check_next_track()
+    playlist.update_que()
 
     result = dict(
         playlist=str(playlist.id),
@@ -65,7 +65,7 @@ def next_track():
     playlist_arg = request.args.get('playlist_id')
 
     playlist = Playlist.objects(id=playlist_arg).first()
-    playlist.check_next_track()
+    playlist.update_que()
     next_track = playlist.next_track
     result = dict(track=next_track['track'], artist=next_track['artist'], album=next_track['album'], uri=next_track['uri'])
     return jsonify(result=result)

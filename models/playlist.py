@@ -5,7 +5,7 @@ from mongoengine import (Document, DateTimeField, StringField, IntField, ListFie
 class Playlist(Document):
     backup_playlist = StringField()
     tracks = ListField()
-    currently_playing = StringField()
+    currently_playing = DictField()
     next_track = DictField()
 
     meta = {
@@ -60,22 +60,25 @@ class Playlist(Document):
         self.update_que()
         super(Playlist, self).save()
 
-    def check_next_track(self):
-        if not self.tracks:
-            next_track = dict(uri='next track on spotify playlist')
-        else:
-            # print self.next_track
-            # next_track = self.next_track
-            self.update_que()
+    # def check_next_track(self):
+    #     if not self.tracks:
+    #         next_track = dict(uri='next track on spotify playlist')
+    #     else:
+    #         # print self.next_track
+    #         # next_track = self.next_track
+    #         self.update_que()
 
     def update_que(self):
-        # self.tracks = sorted(self.tracks, key=lambda k: k['upvotes'])
         self.tracks = sorted(self.tracks, key=lambda k: (k['vote_rating'], k['added']))
-        # self.currently_playing = self.tracks[0]
-        # self.tracks.pop(0)
-        # print self.tracks[0]
-        self.next_track = self.tracks[0]
-        # print self.next_track
+
+        if len(self.tracks) <= 0:
+            self.currently_playing = dict(uri='next track on spotify playlist')
+            self.next_track = dict(uri='next track on spotify playlist')
+        else:
+            self.currently_playing = self.tracks[0]
+            self.next_track = self.tracks[0]
+            self.tracks.pop(0)
+
         super(Playlist, self).save()
 
 
