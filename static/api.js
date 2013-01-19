@@ -14,7 +14,6 @@ function callAPI(api_function, callback_function) {
 
 
 
-setInterval(checkServer, 5000);
 function checkServer(){
 	//Check if the current timestamp is newer then _lastestupdate
   	console.log("Checking database for changes...");
@@ -22,6 +21,7 @@ function checkServer(){
 	getPlaylist();
 }
 
+setInterval(checkServer, 5000);
 
 
 function addSong(href) {
