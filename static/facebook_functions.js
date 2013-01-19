@@ -1,11 +1,8 @@
 
 function onFBConnected() {
-
-	
 	FB.api('/me', function(response) {
 		// Initiate the FB.user object
 		FB.user = response;
-		console.log(FB.user);
 		$.mobile.changePage( ($("#page_home")));
 		$.mobile.hidePageLoadingMsg();
 	});
@@ -16,15 +13,19 @@ function onFBLogin() {
 }
 
 function onFBCancelledLogin() {
+	$.mobile.hidePageLoadingMsg();
 }
 
 function onFBLogout() {
+	FB.user = {};
 }
 
 function onFBNotAuthorized() {
+	$.mobile.hidePageLoadingMsg();
 }
 
 function onFBNotLoggedIn() {
+	$.mobile.hidePageLoadingMsg();
 }
 
 function login() {
@@ -46,6 +47,7 @@ function login() {
 }
 
 function logout() {
+	$.mobile.showPageLoadingMsg();
 	FB.logout(function(response) {
 		onFBLogout();
 	});
@@ -53,6 +55,7 @@ function logout() {
 
 
 window.fbAsyncInit = function() {
+	$.mobile.showPageLoadingMsg();
 	FB.init({
 	    appId      : '239735496161666', // App ID
 	    channelUrl : 'http://bok.alexanderheldt.se:8080/client/', // Channel File
@@ -61,6 +64,7 @@ window.fbAsyncInit = function() {
 	    xfbml      : true  // parse XFBML
 	});
 	FB.getLoginStatus(function(response) {
+
 		if (response.status === 'connected') {
 			onFBConnected();
 		} else if (response.status === 'not_authorized') {
