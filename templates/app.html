@@ -8,23 +8,66 @@
         <title>
         </title>
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}"/>
+        <link rel="stylesheet" href="style.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
         </script>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.2.0/jquery.mobile-1.2.0.min.js">
         </script>
-        <script type="text/javascript" src="{{ url_for('static', filename='myjs.js') }}"></script>
-        </script>
+        <script src="utils.js"></script>
     </head>
     <body>
-        <!-- Home -->
-        <div data-role="page" id="page1">
+        <!--    
+            The best place to put this code is right after the opening <body> tag.
+            https://developers.facebook.com/docs/howtos/login/getting-started/ 
+        -->
+        <div id="fb-root"></div>
+        <script src="facebook_functions.js"></script>
+        <!-- Login -->
+        <div data-role="page" id="page_login">
             <div id="header" data-theme="a" data-role="header">
                 <h3>
                     DJ-licious
                 </h3>
             </div>
             <div data-role="content">
+
+                <h2>Time to log in to DJ-licious!</h2>
+
+                <a data-role="button" href="#" onclick="login()">Login with facebook</a>
+            </div>
+        </div>
+        <!-- Search -->
+        <div data-role="page" id="page_search">
+            <div id="header" data-theme="a" data-role="header">
+                <h3>
+                    DJ-licious: Search
+                    <div class="ui-btn-left" data-role="controlgroup" data-type="horizontal">
+                        <a href="#page_home" data-role="button" data-icon="back" data-transition="fade">Back</a>
+                    </div>
+                </h3>
+            </div>
+            <div data-role="content">
+                <div id="searchResult">
+                </div>
+            </div>
+        </div>
+        <!-- Home -->
+        <div data-role="page" id="page_home">
+            <div id="header" data-theme="a" data-role="header">
+                <h3>
+                    DJ-licious
+                </h3>
+            </div>
+            <div data-role="content">
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="searchinput1">
+                        </label>
+                        <form id="searchBar">
+                            <input name="" id="searchinput1" placeholder="search for music" value="" type="search"/>
+                        </form>
+                    </fieldset>
+                </div>
                 <h1 id="mainTitle">
                     Now playing:
                 </h1>
@@ -36,25 +79,16 @@
                     <div id="mainTextContainer">
                         Spectrum (Say My Name) </br>
                         Florence + The Machine
-                    </div>
+                </div>
              
                 </div>
                 <h2 id="queueTitle">
                     In queue:
                 </h2>
-  
-                <div class="queueContainer">
-                    <div class="queueImgContainer">
-                        <img style="width: 100px; height: 100px" src="http://4.musicimg.ovi.com/u/1.0/image/260918319/?w=100&q=90" />
+                
+                    <div id="queueList">
+                       
                     </div>
-                    <div class="queueTextContainer">
-                        Kick Out The </br>
-                        Dada Life
-                    </div>
-                    <div class="queueVoteContainer">
-                        Vote man, vote
-                    </div>
-                </div>
             </div>
         </div>
     </body>
