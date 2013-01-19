@@ -1,9 +1,7 @@
-var debug=true;
-
 
 function onFBConnected() {
 
-	$.mobile.showPageLoadingMsg();
+	
 	FB.api('/me', function(response) {
 		// Initiate the FB.user object
 		FB.user = response;
@@ -30,11 +28,7 @@ function onFBNotLoggedIn() {
 }
 
 function login() {
-
-	if (debug) {
-		$.mobile.changePage( ($("#page_home")));
-	}
-
+	$.mobile.showPageLoadingMsg();
 	FB.getLoginStatus(function(response) {
 		if (response.status === 'connected') {
 			onFBConnected();
