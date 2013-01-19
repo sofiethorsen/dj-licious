@@ -19,6 +19,18 @@ def create_playlist(backup_id):
 
     return jsonify(result=result)
 
+@app.route('/api/get_next_song/<playlist_id>/')
+def get_next_song(playlist_id):
+    playlist = Playlist.objects(id=playlist_id).first()
+
+    track = dict(
+        name='I Turn My Camera On',
+        artist='Spoon',
+        album='Gimme Fiction',
+        uri='spotify:track:09k5Qyysx5RnXLqamvdYEN')
+
+    return jsonify(track=track)
+
 
 @app.route('/api/get-playlist/<playlist_id>/')
 def get_playlist(playlist_id):    
