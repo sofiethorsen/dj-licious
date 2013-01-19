@@ -38,11 +38,6 @@ function onSongClick(href) {
     }
 }
 
-
-
-
-
-
 // Search for songs from Spotify
 function searchSong(search_string) {
     $.mobile.showPageLoadingMsg();
@@ -119,8 +114,8 @@ function generateQueue(data) {
         builder += "</div>";
 
         builder += "<div class=\"queueVoteContainer\">";
-        builder += "<div class=\"voteup\"></div>";
-        builder += "<div class=\"votedown\"></div>";
+        builder += "<a href='#' onClick='vote(\""+tracks[i].href+"\", 1)'><div class=\"voteup\"></div></a>";
+        builder += "<a href='#' onClick='vote(\""+tracks[i].href+"\", -1)'><div class=\"votedown\"></div></a>";
         builder += "</div>";
         builder += "</div>";
     }
