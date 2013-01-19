@@ -50,13 +50,12 @@ class Playlist(Document):
         for i, track in enumerate(self.tracks):
             if track['uri'] == uri:
                 if track['voters'][0]['votee'] == facebook_id:
-                    print self.tracks[i]
-                    # self.tracks[i]['voters']['vote'] = int(vote)
+                    self.tracks[i]['voters'][0]['vote'] = int(vote)
                     print 'updated vote.'
                 else:                            
                     track['voters'].append(dict(votee=facebook_id, vote=int(vote)))
-                    track['vote_rating'] += int(vote)
                     print 'added vote.'
+            track['vote_rating'] += int(vote)
 
         self.update_que()
         super(Playlist, self).save()
