@@ -1,0 +1,16 @@
+#mainContainer {
+	height: 100px;
+	width: 100%;
+	overflow: hidden;
+}
+
+#mainImgContainer {
+	float: left;
+}
+
+#mainTextContainer {
+	padding-left: 5px;
+	padding-top: 2px;
+	line-height: 200%;
+	float: left;
+}
