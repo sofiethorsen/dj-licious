@@ -40,8 +40,8 @@
 }
 
 .voteUp{
-	width: 30px;
-	height: 30px;
+	background-size:30px 30px;
+	background-repeat:no-repeat;
 	background-image: url("http://bok.alexanderheldt.se:8080/static/img/upvote.png");
 }
 
