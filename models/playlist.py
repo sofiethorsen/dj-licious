@@ -1,12 +1,11 @@
 from datetime import datetime
 from mongoengine import (Document, DateTimeField, StringField, IntField, ListField, DictField)
-
+from random import choice
 
 class Playlist(Document):
     backup_playlist = StringField()
     tracks = ListField()
     currently_playing = DictField()
-    next_track = DictField()
     adder = StringField()
 
     meta = {
@@ -20,9 +19,13 @@ class Playlist(Document):
             super(Playlist, self).__init__(*args, **kwargs)
 
     def add_track(self, facebook_id, track, artist, album, uri):
-        matches = [track for track in self.tracks if track['uri'] == uri]
+        matches = 0
+        for t in self.tracks:
+            if t['uri'] == uri:
+                matches += 1
 
-        if len(matches) == 0:
+        print 'add_track', track
+        if matches == 0:
             track = dict(
                 adder=facebook_id,
                 artist=artist,
@@ -30,9 +33,9 @@ class Playlist(Document):
                 track=track,
                 uri=uri,
                 voters=[dict(votee=facebook_id, vote=1)],
-                vote_rating=0,
+                vote_rating=1,
                 added=datetime.utcnow().strftime('%Y-%-m-%d %H:%M:%S'))
-
+            print track
             self.tracks.append(track)
         super(Playlist, self).save()
 
@@ -65,45 +68,38 @@ class Playlist(Document):
         super(Playlist, self).save()
 
     def get_next_track(self):
-        if len(self.tracks) <= 0:
-            track = dict(
-                artist='Basement Jaxx',
-                adder='johan.brodin',
-                album='Remedy',
-                track='Gemilude',
-                uri='spotify:track:0SNCZ71vAXD5cBJqOeTdT3',
-                voters=[dict(votee='backup', vote=1)],
-                vote_rating=0,
-                added=datetime.utcnow().strftime('%Y-%-m-%d %H:%M:%S'))
+        if len(self.tracks) == 0:
+            backup_playlist = [
+                dict(
+                    artist='Basement Jaxx',
+                    adder=None,
+                    album='Remedy',
+                    track='Gemilude',
+                    uri='spotify:track:0SNCZ71vAXD5cBJqOeTdT3',
+                    voters=[dict(votee='backup', vote=1)],
+                    vote_rating=0,
+                    added=datetime.utcnow().strftime('%Y-%-m-%d %H:%M:%S')),
+                dict(
+                    artist='Basement Jaxx',
+                    adder=None,
+                    album='Remedy',
+                    track='Bingo Bango',
+                    uri='spotify:track:1xJW8GKZeugt3hdG1khWzr',
+                    voters=[dict(votee='backup', vote=1)],
+                    vote_rating=0,
+                    added=datetime.utcnow().strftime('%Y-%-m-%d %H:%M:%S'))
+            ]
 
-            self.currently_playing = track
+            track = choice(backup_playlist)
         else:
-            self.currently_playing = self.tracks[0]
-            self.next_track = self.tracks[0]
-            self.tracks.pop(0)
+            track = self.tracks.pop(0)
+        self.currently_playing = track
         super(Playlist, self).save()
+        return track
 
     def update_que(self):
         # self.tracks = sorted(self.tracks, key=lambda k: (k['vote_rating'], k['added']))
         playlist = sorted(playlist.tracks, key=lambda k: k['upvotes'])
-
-        # if len(self.tracks) <= 0:
-        #     track = dict(
-        #         artist='Basement Jaxx',
-        #         album='Remedy',
-        #         track='Gemilude',
-        #         uri='spotify:track:0SNCZ71vAXD5cBJqOeTdT3',
-        #         voters=[dict(votee='backup', vote=1)],
-        #         vote_rating=0,
-        #         added=datetime.utcnow().strftime('%Y-%-m-%d %H:%M:%S'))
-
-        #     self.currently_playing = self.tracks.append(track)
-        #     self.next_track = self.tracks[0]
-        # else:
-        #     self.currently_playing = self.tracks[0]
-        #     self.next_track = self.tracks[0]
-        #     self.tracks.pop(0)
-
         super(Playlist, self).save()
 
 
