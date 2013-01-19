@@ -37,7 +37,7 @@ function genGrid(data) {
 
 
     for(var i=0; i < print_num; i++) {
-        builder += "<div onClick=\"addSong()\" class=\"ui-grid-a\">";
+        builder += "<div id=\"item_"+ getSpotifyId(data.tracks[i].href) +"\" onClick=\"onSongClick(\'"+data.tracks[i].href+"\')\" class=\"ui-grid-a\">";
         builder += "<div class=\"ui-block-a\">";
         builder += data.tracks[i].name;
         builder += "</div>";
@@ -50,8 +50,19 @@ function genGrid(data) {
     return builder;
 }
 
-function addSong(id) {
-    alert(id);
+function onSongClick(href) {
+    div_id = "#item_"+getSpotifyId(href);
+
+    // Remove song
+    if ($(div_id).css("opacity") === "0.5") {
+        $(div_id).css("background-color", "rgba(0, 0, 0, 0)");
+        $(div_id).css("opacity", "1.0");
+    }
+    // Add song
+    else { 
+        $(div_id).css("background-color", "lightgreen");
+        $(div_id).css("opacity", "0.5");
+    }
 }
 
 $(function() {
@@ -59,7 +70,7 @@ $(function() {
     $("#searchBar").submit(
         function (e) {
         e.preventDefault(); // this will prevent from submitting the form.
-        $.mobile.changePage( ($("#page_search")));
+        $.mobile.changePage($("#page_search"), { transition: "slideup"});
         search_string = $("#searchinput1").val();
         searchSong(search_string);
 
@@ -81,7 +92,6 @@ function searchSong(search_string) {
 // Runs when data from Spotify Web API is loaded
 function onSpotifyResult(result) {
     data = parseSpotifyData(result);
-    console.log(data);
     $("#searchResult").append(genGrid(data));
     $.mobile.hidePageLoadingMsg();
 }
@@ -94,14 +104,23 @@ function parseSpotifyData(result) {
     data.total_num_results = result.info.num_results;
     data.num_results = Math.min(data.total_num_results, 100);
 
+    console.log(result);
     for (var i=0;i<data.num_results;i++)
     { 
         track = {};
         track.artist = result.tracks[i].artists[0].name;
         track.name = result.tracks[i].name;
+
+
+        track.href = result.tracks[i].href;
+
         data.tracks[i] = track;
     }
     return data;
+}
+
+function getSpotifyId(href) {
+    return href.substring(14);
 }
 
 //TODO: Have a cache?
