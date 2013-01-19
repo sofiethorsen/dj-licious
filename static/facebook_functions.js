@@ -1,5 +1,6 @@
 
 function onFBConnected() {
+	console.log("onFBConnected");
 	FB.api('/me', function(response) {
 		// Initiate the FB.user object
 		FB.user = response;
@@ -10,10 +11,12 @@ function onFBConnected() {
 }
 
 function onFBLogin() {
+	console.log("onFBLogin");
 	onFBConnected();
 }
 
 function onFBCancelledLogin() {
+	console.log("onFBCancelledLogin");
 	$.mobile.hidePageLoadingMsg();
 }
 
@@ -22,10 +25,12 @@ function onFBLogout() {
 }
 
 function onFBNotAuthorized() {
+	console.log("onFBNotAuthorized");
 	$.mobile.hidePageLoadingMsg();
 }
 
 function onFBNotLoggedIn() {
+	console.log("onFBNotLoggedIn");
 	$.mobile.hidePageLoadingMsg();
 }
 
