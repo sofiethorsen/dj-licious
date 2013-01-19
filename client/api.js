@@ -1,18 +1,25 @@
+
+var _lastestupdate = "";
+var _playlistId = 1;
+
+
 function getFromApi(api_function, callback_function) {
-	$.getJSON("http://bok.alexanderheldt.se:8080/api/"+api_function
-		, function(data){callback_function(data);});
+	request = "http://bok.alexanderheldt.se:8080/api/"+api_function;
+	console.log("Running the request: " + request)
+	$.getJSON(request, function(data){
+		console.log("Reply from server.")
+		callback_function(data);
+	});
 }
 
 
-function test() {
-	getFromApi("test", onTestResult);
-}
 
+setInterval(checkServer, 5000);
+function checkServer(){
+	//Check if the current timestamp is newer then _lastestupdate
+  	console.log("Checking database for changes...");
 
-function omg() {
-
-	$.getJSON("http://bok.alexanderheldt.se:8080/api/test"
-		, function(data){callback_function(data);});
+	//getFromApi("test/", onTestResult);
 
 }
 
