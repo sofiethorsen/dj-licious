@@ -13,9 +13,7 @@
         </script>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.2.0/jquery.mobile-1.2.0.min.js">
         </script>
-        <script src="genList.js"></script>
-
-        
+        <script src="utils.js"></script>
     </head>
     <body>
         <!--    
@@ -35,8 +33,20 @@
 
                 <h2>Time to log in to DJ-licious!</h2>
 
-
                 <a data-role="button" href="#" onclick="login()">Login with facebook</a>
+            </div>
+        </div>
+        <!-- Search -->
+        <div data-role="page" id="page_search">
+            <div id="header" data-theme="a" data-role="header">
+                <h3>
+                    Search
+                </h3>
+            </div>
+            <div data-role="content">
+
+                <h2>Should be some music here...</h2>
+
             </div>
         </div>
         <!-- Home -->
@@ -51,7 +61,9 @@
                     <fieldset data-role="controlgroup">
                         <label for="searchinput1">
                         </label>
-                        <input name="" id="searchinput1" placeholder="search for music" value="" type="search" />
+                        <form id="searchBar">
+                            <input name="" id="searchinput1" placeholder="search for music" value="" type="search"/>
+                        </form>
                     </fieldset>
                 </div>
                 <h1 id="mainTitle">
