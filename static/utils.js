@@ -73,6 +73,15 @@ function onSongClick(href) {
 
 
 $(function() {
+
+    if(window.location.hash) {
+      console.log(window.location.hash);
+    } else {
+      // Fragment doesn't exist
+    }
+
+
+
     $("#searchBar").submit(
         function (e) {
         e.preventDefault(); // this will prevent from submitting the form.
@@ -84,6 +93,9 @@ $(function() {
 
         return false;
     });
+
+
+
 });
 
 
