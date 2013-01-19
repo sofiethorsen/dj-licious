@@ -1,14 +1,16 @@
-
+var debug=true;
 
 
 function onFBConnected() {
+
+	$.mobile.showPageLoadingMsg();
 	FB.api('/me', function(response) {
 		// Initiate the FB.user object
 		FB.user = response;
 		console.log(FB.user);
+		$.mobile.changePage( ($("#page_home")));
+		$.mobile.hidePageLoadingMsg();
 	});
-
-	
 }
 
 function onFBLogin() {
@@ -28,6 +30,11 @@ function onFBNotLoggedIn() {
 }
 
 function login() {
+
+	if (debug) {
+		$.mobile.changePage( ($("#page_home")));
+	}
+
 	FB.getLoginStatus(function(response) {
 		if (response.status === 'connected') {
 			onFBConnected();
@@ -54,7 +61,7 @@ function logout() {
 window.fbAsyncInit = function() {
 	FB.init({
 	    appId      : '239735496161666', // App ID
-	    channelUrl : 'http://www.csc.kth.se/~jbrodi/spotify/index.htm', // Channel File
+	    channelUrl : 'http://bok.alexanderheldt.se:8080/client/', // Channel File
 	    status     : true, // check login status
 	    cookie     : true, // enable cookies to allow the server to access the session
 	    xfbml      : true  // parse XFBML

@@ -13,12 +13,34 @@
         </script>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.2.0/jquery.mobile-1.2.0.min.js">
         </script>
-        <script src="genList.js">
-        </script>
+        <script src="genList.js"></script>
+
+        
     </head>
     <body>
+        <!--    
+            The best place to put this code is right after the opening <body> tag.
+            https://developers.facebook.com/docs/howtos/login/getting-started/ 
+        -->
+        <div id="fb-root"></div>
+        <script src="facebook_functions.js"></script>
+        <!-- Login -->
+        <div data-role="page" id="page_login">
+            <div id="header" data-theme="a" data-role="header">
+                <h3>
+                    DJ-licious
+                </h3>
+            </div>
+            <div data-role="content">
+
+                <h2>Time to log in to DJ-licious!</h2>
+
+
+                <a data-role="button" href="#" onclick="login()">Login with facebook</a>
+            </div>
+        </div>
         <!-- Home -->
-        <div data-role="page" id="page1">
+        <div data-role="page" id="page_home">
             <div id="header" data-theme="a" data-role="header">
                 <h3>
                     DJ-licious

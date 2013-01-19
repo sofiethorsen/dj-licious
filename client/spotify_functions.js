@@ -6,8 +6,7 @@ function searchSong(search_string) {
 	$.getJSON("http://ws.spotify.com/search/1/track.json?q="+needle,
 		function(data){onSpotifyResult(data);});
 
-	//$.mobile.showPageLoadingMsg();
-	//$.mobile.hidePageLoadingMsg();
+
 }
 
 // Runs when data from Spotify Web API is loaded
