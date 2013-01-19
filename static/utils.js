@@ -85,11 +85,8 @@ $(function() {
 
     _playlistId = window.location.hash.substring(1);
 
-    console.log("id:" + _playlistId);
+    console.log("Following playlist id:" + _playlistId);
     
-
-
-
     $("#searchBar").submit(
         function (e) {
         e.preventDefault(); // this will prevent from submitting the form.
