@@ -1,6 +1,6 @@
 
 var _lastestupdate = "";
-var _playlistId = "50fae543cf1e8c48dcd6e42b";
+var _playlistId = "50fae444cf1e8c48d218e6c8";
 
 function callAPI(api_function, callback_function) {
 	request = "http://bok.alexanderheldt.se:8080/api/"+api_function;
