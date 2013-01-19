@@ -7,6 +7,7 @@ function callAPI(api_function, callback_function) {
 	console.log("Running the request: " + request)
 	$.getJSON(request, function(data){
 		console.log("Reply from server.");
+		console.log(data);
 		callback_function(data);
 	});
 }
@@ -24,7 +25,6 @@ function checkServer(){
 
 
 function addSong(href) {
-
 	callAPI("add-track/?playlist_id"+_playlistId+"=&facebook_id="+FB.user.id+"&artist=test&album=test&uri="+href+"&track=test", console.log);
 }
 

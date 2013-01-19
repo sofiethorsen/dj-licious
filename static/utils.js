@@ -1,3 +1,6 @@
+var _TRACKS = [];
+
+
 function generateQueue() {
     var builder = "";
     var imgSrc = "http://www.beatmyday.com/wp-content/uploads/2012/07/Florence-+-The-Machine-Spectrum-Say-My-Name.jpeg";
@@ -120,7 +123,12 @@ function parseSpotifyData(result) {
         track.href = result.tracks[i].href;
 
         data.tracks[i] = track;
+
+        _TRACKS[getSpotifyId(track.href)] = track;
     }
+
+
+
     return data;
 }
 
