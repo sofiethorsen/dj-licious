@@ -1,9 +1,7 @@
 var _TRACKS = [];
-var _playlistId = "";
 
 
 $(function() {
-    _playlistId = window.location.hash.substring(1);
     console.log("Following playlist id:" + _playlistId);
     checkServer();
 
