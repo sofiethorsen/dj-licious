@@ -17,7 +17,8 @@
 .queueContainer {
 	height: 100px;
 	width: 100%;
-	position: relative;
+	float: left;
+	background-color: orange;
 }
 
 .queueImgContainer {
@@ -26,16 +27,16 @@
 
 .queueTextContainer {
 	height: 100px;
+	width: 100px;
 	padding-left: 15px;
 	line-height: 200%;
 	float: left;
+	background-color: red;
 }
 
 .queueVoteContainer {
-	position: absolute;
-	padding-left: 15px;
-	width: 200px;
-	bottom: 0px;
-	right: 0px;
-	color: red;
+	background-color: blue;
+	height: 100px;
+	width: 100px;
+	float: right;
 }
