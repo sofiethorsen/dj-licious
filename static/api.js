@@ -4,6 +4,7 @@ var _lastestupdate = "";
 
 function callAPI(api_function, callback_function) {
 	request = "http://bok.alexanderheldt.se:8080/api/"+api_function;
+	console.log("Called function: " + api_function);
 	$.getJSON(request, function(data){
 		console.log(data);
 		callback_function(data);
