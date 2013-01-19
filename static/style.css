@@ -39,6 +39,19 @@
 	float: right;
 }
 
+.voteUp{
+	width: 30px;
+	height: 30px;
+	background-image: url("{{ url_for('static', filename='img/upvote.png') }}");
+}
+
+.voteDown {
+	width: 30px;
+	height: 30px;
+	background-image: url("{{ url_for('static', filename='img/downvoet.png') }}");
+}
+
+
 .odd {
 	background-color: #F0F0F0;
 }
