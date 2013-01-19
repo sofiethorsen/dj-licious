@@ -114,8 +114,8 @@ function generateQueue(data) {
         builder += "</div>";
 
         builder += "<div class=\"queueVoteContainer\">";
-        builder += "<a href='#' onClick='vote(\""+tracks[i].href+"\", 1)'><div class=\"voteup\"></div></a>";
-        builder += "<a href='#' onClick='vote(\""+tracks[i].href+"\", -1)'><div class=\"votedown\"></div></a>";
+        builder += "<a href='#' onClick='vote(\""+tracks[i].href+"\", 1)'><div class=\"voteUp\"></div></a>";
+        builder += "<a href='#' onClick='vote(\""+tracks[i].href+"\", -1)'><div class=\"voteDown\"></div></a>";
         builder += "</div>";
         builder += "</div>";
     }
