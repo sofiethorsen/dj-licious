@@ -51,13 +51,3 @@ function onResultPlaylist(data) {
 	
 	$("#queueList").html(generateQueue(data));
 }
-
-// Vote for a track
-function vote(track_id) {
-	//API -> bok.alexanderheldt.se:8080/api/vote/<playlist_id>/<track_id>/<facebook_id>
-	//callAPI("vote/"+_playlistId+"/"+track_id+"/"+user_id, alert);
-}
-
-function addSong(track_id) {
-	//API -> bok.alexanderheldt.se:8080/api/add-song/<playlist_id>/<track_id>
-}
