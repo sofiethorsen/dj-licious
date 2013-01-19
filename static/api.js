@@ -19,7 +19,7 @@ function checkServer(){
 
 function vote(href, vote) {
 	//API bok.alexanderheldt.se:8080/api/vote/<playlist_id>/<track_id>/<facebook_id>/<vote>
-	callAPI("vote/?playlist_id="+_playlistId+"&uri="+href+"facebook_id="+FB.user.id+"&vote="+vote, onVoteResult);
+	callAPI("vote/?playlist_id="+_playlistId+"&uri="+href+"&facebook_id="+FB.user.id+"&vote="+vote, onVoteResult);
 }
 
 function onVoteResult(data){
