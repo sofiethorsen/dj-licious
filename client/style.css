@@ -1,0 +1,53 @@
+#mainContainer {
+	height: 100px;
+	width: 100%;
+	overflow: hidden;
+}
+
+#mainImgContainer {
+	float: left;
+}
+
+#mainTextContainer {
+	padding-left: 15px;
+	line-height: 200%;
+	float: left;
+}
+
+.queueContainer {
+	height: 100px;
+	width: 100%;
+	float: left;
+}
+
+.queueImgContainer {
+	float: left;
+}
+
+.queueTextContainer {
+	height: 100px;
+	padding-left: 15px;
+	line-height: 200%;
+	float: left;
+}
+
+.queueVoteContainer {
+	padding-left: 15px;
+	line-height: 200%;
+	height: 100px;
+	width: 100px;
+	float: right;
+}
+
+.ui-grid-a {
+
+}
+
+.ui-block-a {
+
+}
+
+.ui-block-b {
+
+}
+
