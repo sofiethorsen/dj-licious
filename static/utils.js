@@ -1,67 +1,27 @@
 var _TRACKS = [];
 var _playlistId = "";
 
-function generateQueue(data) {
-    var builder = "";
+
+$(function() {
+
+    _playlistId = window.location.hash.substring(1);
+
+    console.log("Following playlist id:" + _playlistId);
     
+    $("#searchBar").submit(
+        function (e) {
+        e.preventDefault(); // this will prevent from submitting the form.
+        $.mobile.changePage($("#page_search"),{ transition: "fade"});
+        search_string = $("#searchinput1").val();
+        // Reset the search bar
+        $("#searchinput1").val("");
+        searchSong(search_string);
 
-    tracks = data.result.tracks;
+        return false;
+    });
 
-    for(var i=0; i < tracks.length; i++) {
-        var color;
-        if(i % 2 == 0) {
-           color  = "odd";
-        } else {
-            color = "even";
-        }
+});
 
-        imgSrc = "https://graph.facebook.com/"+track[i].adder+"/picture?width=100&height=100";
-        
-        builder += "<div class=\"queueContainer " + color + "\">";
-        builder += "<div class=\"queueImgContainer\">";
-        builder += "<img style=\"width: 100px; height: 100px\" src=\" ";
-        builder += imgSrc;
-        builder += "\"></div>";
-
-        builder += "<div class=\"queueTextContainer\">";
-        builder += tracks[i].track;
-        builder += "</br>"
-        builder += tracks[i].artist;
-        builder += "</div>";
-
-        builder += "<div class=\"queueVoteContainer\">";
-        builder += "<div class=\"voteup\"></div>";
-        builder += "<div class=\"votedown\"></div>";
-        builder += "</div>";
-        builder += "</div>";
-
-
-
-    }
-
-    return builder;
-}
-
-function genGrid(data) {
-    var print_num = Math.min(20, data.num_results);
-    var builder = "";
-
-    builder += "Showing " + print_num + " of a total of " + data.total_num_results + " tracks. </br>";
-
-
-    for(var i=0; i < print_num; i++) {
-        builder += "<div id=\"item_"+ getSpotifyId(data.tracks[i].href) +"\" onClick=\"onSongClick(\'"+data.tracks[i].href+"\')\" class=\"ui-grid-a\">";
-        builder += "<div class=\"ui-block-a\">";
-        builder += data.tracks[i].name;
-        builder += "</div>";
-        builder += "<div class=\"ui-block-b\">";
-        builder += data.tracks[i].artist;
-        builder += "</div>";
-        builder += "</div>";
-    }
-
-    return builder;
-}
 
 function onSongClick(href) {
     div_id = "#item_"+getSpotifyId(href);
@@ -80,28 +40,7 @@ function onSongClick(href) {
 
 
 
-$(function() {
 
-
-    _playlistId = window.location.hash.substring(1);
-
-    console.log("Following playlist id:" + _playlistId);
-    
-    $("#searchBar").submit(
-        function (e) {
-        e.preventDefault(); // this will prevent from submitting the form.
-        $.mobile.changePage($("#page_search"),{ transition: "fade"});
-        search_string = $("#searchinput1").val();
-        // Reset the search bar
-        $("#searchinput1").val("");
-        searchSong(search_string);
-
-        return false;
-    });
-
-
-
-});
 
 
 // Search for songs from Spotify
@@ -144,9 +83,6 @@ function parseSpotifyData(result) {
 
         _TRACKS[getSpotifyId(track.href)] = track;
     }
-
-
-
     return data;
 }
 
@@ -154,10 +90,61 @@ function getSpotifyId(href) {
     return href.substring(14);
 }
 
-//TODO: Have a cache?
-// search_string = $("#searchinput1").val();
-// searchSong(search_string);
+
+function generateQueue(data) {
+    var builder = "";
+    
+    tracks = data.result.tracks;
+
+    for(var i=0; i < tracks.length; i++) {
+        var color;
+        if(i % 2 == 0) {
+           color  = "odd";
+        } else {
+            color = "even";
+        }
+
+        imgSrc = "https://graph.facebook.com/"+track[i].adder+"/picture?width=100&height=100";
+        
+        builder += "<div class=\"queueContainer " + color + "\">";
+        builder += "<div class=\"queueImgContainer\">";
+        builder += "<img style=\"width: 100px; height: 100px\" src=\" ";
+        builder += imgSrc;
+        builder += "\"></div>";
+
+        builder += "<div class=\"queueTextContainer\">";
+        builder += tracks[i].track;
+        builder += "</br>"
+        builder += tracks[i].artist;
+        builder += "</div>";
+
+        builder += "<div class=\"queueVoteContainer\">";
+        builder += "<div class=\"voteup\"></div>";
+        builder += "<div class=\"votedown\"></div>";
+        builder += "</div>";
+        builder += "</div>";
+    }
+
+    return builder;
+}
+
+function genGrid(data) {
+    var print_num = Math.min(20, data.num_results);
+    var builder = "";
+
+    builder += "Showing " + print_num + " of a total of " + data.total_num_results + " tracks. </br>";
 
 
+    for(var i=0; i < print_num; i++) {
+        builder += "<div id=\"item_"+ getSpotifyId(data.tracks[i].href) +"\" onClick=\"onSongClick(\'"+data.tracks[i].href+"\')\" class=\"ui-grid-a\">";
+        builder += "<div class=\"ui-block-a\">";
+        builder += data.tracks[i].name;
+        builder += "</div>";
+        builder += "<div class=\"ui-block-b\">";
+        builder += data.tracks[i].artist;
+        builder += "</div>";
+        builder += "</div>";
+    }
 
-
+    return builder;
+}
