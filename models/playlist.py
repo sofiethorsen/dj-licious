@@ -59,12 +59,14 @@ class Playlist(Document):
                 if not has_voted:
                     track['voters'].append(dict(votee=facebook_id, vote=int(vote)))
                     print 'added vote.'
- 
+
         for i, track in enumerate(self.tracks):
             track['vote_rating'] = 0
             for vote in track['voters']:
                 print vote['vote']
                 self.tracks[i]['vote_rating'] += int(vote['vote'])
+
+        self.update_que()
         super(Playlist, self).save()
 
     def get_next_track(self):
@@ -98,8 +100,9 @@ class Playlist(Document):
         return track
 
     def update_que(self):
+        pass
         # self.tracks = sorted(self.tracks, key=lambda k: (k['vote_rating'], k['added']))
-        playlist = sorted(playlist.tracks, key=lambda k: k['upvotes'])
+        # playlist = sorted(playlist.tracks, key=lambda k: k['upvotes'])
         super(Playlist, self).save()
 
 
