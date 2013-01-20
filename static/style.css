@@ -50,6 +50,7 @@ h2 {
 	float: left;
 	display: inline;
 	word-wrap: break-word;
+	line-height: 200%;
 }
 
 .queueNumVoteContainer {
