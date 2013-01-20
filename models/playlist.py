@@ -7,6 +7,7 @@ class Playlist(Document):
     tracks = ListField()
     currently_playing = DictField()
     adder = StringField()
+    updated = DateTimeField()
 
     meta = {
         'allow_inheritance': False,
@@ -37,6 +38,7 @@ class Playlist(Document):
                 added=datetime.utcnow().strftime('%Y-%-m-%d %H:%M:%S'))
             print track
             self.tracks.append(track)
+            self.update_que()
         super(Playlist, self).save()
 
 
@@ -96,6 +98,7 @@ class Playlist(Document):
         else:
             track = self.tracks.pop(0)
         self.currently_playing = track
+        self.update_que()
         super(Playlist, self).save()
         return track
 
@@ -103,6 +106,7 @@ class Playlist(Document):
         pass
         # self.tracks = sorted(self.tracks, key=lambda k: (k['vote_rating'], k['added']))
         # playlist = sorted(playlist.tracks, key=lambda k: k['upvotes'])
+        self.updated = datetime.utcnow()
         super(Playlist, self).save()
 
 

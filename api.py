@@ -18,7 +18,8 @@ def create_playlist():
     else:
         playlist = Playlist(backup_playlist=backup_playlist_arg).save()
         playlist_query = Playlist.objects(backup_playlist=backup_playlist_arg).first()
-    result='50fb0245cf1e8c4d42b8b06b'
+    # result='50fb0245cf1e8c4d42b8b06b'
+    result = str(playlist_query.id)
     return jsonify(result=result)
 
 
@@ -50,8 +51,11 @@ def get_playlist():
 
     result = dict(
         playlist=str(playlist.id),
+        updated=playlist.updated.strftime('%Y-%M-%d %H:%M:%S'),
         currently_playing=currently_playing,
         tracks=playlist.tracks)
+
+    playlist.update_que()
 
     return jsonify(result=result)
 
@@ -92,6 +96,16 @@ def add_vote():
     playlist = Playlist.objects(id=playlist_arg).first()
     playlist.vote(uri_arg, facebook_id_arg, vote_arg)
     return jsonify(result='Voted on track.')
+
+
+@app.route('/api/updated/')
+def check_update():
+    playlist_arg = request.args.get('playlist_id')
+
+    playlist = Playlist.objects(id=playlist_arg).first()
+    result = playlist.updated.strftime('%Y-%M-%d %H:%M:%S')
+    return jsonify(result=result)
+
 
 
 @app.route('/client/<playlist_id>')
