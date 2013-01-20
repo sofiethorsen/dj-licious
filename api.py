@@ -18,7 +18,7 @@ def create_playlist():
     else:
         playlist = Playlist(backup_playlist=backup_playlist_arg).save()
         playlist_query = Playlist.objects(backup_playlist=backup_playlist_arg).first()
-    # result='50fb0245cf1e8c4d42b8b06b'
+        
     result = str(playlist_query.id)
     return jsonify(result=result)
 
