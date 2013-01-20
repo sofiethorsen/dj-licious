@@ -45,6 +45,12 @@ h2 {
 	float: left;
 }
 
+.queueNumVoteContainer {
+	float: right;
+	height: 100px;
+	width: 50px;
+}
+
 .queueVoteContainer {
 	height: 100px;
 	width: 45px;
