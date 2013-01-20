@@ -47,6 +47,7 @@ h2 {
 	padding-left: 15px;
 	line-height: 200%;
 	float: left;
+	word-wrap: break-word;
 }
 
 .queueNumVoteContainer {

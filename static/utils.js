@@ -107,9 +107,9 @@ function generateQueue(data) {
 
 
         builder += "<div class=\"queueTextContainer\">";
-        builder += tracks[i].track.substring(0, 10);
+        builder += tracks[i];
         builder += "</br>"
-        builder += tracks[i].artist.substring(0, 10);
+        builder += tracks[i];
         builder += "</div>";
 
 
