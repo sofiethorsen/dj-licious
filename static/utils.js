@@ -65,7 +65,7 @@ function parseSpotifyData(result) {
     for (var i=0;i<data.num_results;i++)
     { 
         var track = {};
-        track.artist = result.tracks[i].artists[0].name;
+        track.artist = escape(result.tracks[i].artists[0].name);
         track.name = result.tracks[i].name;
 
         track.album = result.tracks[i].album.name;
