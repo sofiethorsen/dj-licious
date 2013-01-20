@@ -65,10 +65,10 @@ function parseSpotifyData(result) {
     for (var i=0;i<data.num_results;i++)
     { 
         var track = {};
-        track.artist = result.tracks[i].artists[0].name.substring(0, 10);;
-        track.name = result.tracks[i].name.substring(0, 10);
+        track.artist = result.tracks[i].artists[0].name;
+        track.name = result.tracks[i].name;
 
-        track.album = result.tracks[i].album.name.substring(0, 10);;
+        track.album = result.tracks[i].album.name;
         track.href = result.tracks[i].href;
 
         data.tracks[i] = track;
@@ -107,9 +107,9 @@ function generateQueue(data) {
 
 
         builder += "<div class=\"queueTextContainer\">";
-        builder += tracks[i].track;
+        builder += tracks[i].track.substring(0, 10);
         builder += "</br>"
-        builder += tracks[i].artist;
+        builder += tracks[i].artist.substring(0, 10);
         builder += "</div>";
 
 
