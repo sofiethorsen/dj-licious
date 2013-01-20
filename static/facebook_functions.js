@@ -18,20 +18,25 @@ function onFBLogin() {
 
 function onFBCancelledLogin() {
 	console.log("onFBCancelledLogin");
+	$.mobile.changePage( ($("#page_login")));
 	$.mobile.hidePageLoadingMsg();
 }
 
 function onFBLogout() {
+	$.mobile.changePage( ($("#page_login")));
 	FB.user = {};
 }
 
 function onFBNotAuthorized() {
 	console.log("onFBNotAuthorized");
+	$.mobile.changePage( ($("#page_login")));
 	$.mobile.hidePageLoadingMsg();
 }
 
 function onFBNotLoggedIn() {
 	console.log("onFBNotLoggedIn");
+	$.mobile.changePage( ($("#page_login")));
+	
 	$.mobile.hidePageLoadingMsg();
 }
 
