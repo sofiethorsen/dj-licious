@@ -69,7 +69,7 @@ def url_add_track():
 
     print 'track_arg', track_arg
 
-    playlist = Playlist.objects(playlist_hash=playlist_hash).first()
+    playlist = Playlist.objects(playlist_hash=playlist_arg).first()
     playlist.add_track(facebook_id_arg, track_arg, artist_arg, album_arg, uri_arg)
     playlist.update_que()
     return jsonify(result='Added track.')
