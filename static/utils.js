@@ -37,6 +37,7 @@ function onSongClick(href) {
 
 // Search for songs from Spotify
 function searchSong(search_string) {
+    $("#searchResult").html("");
     $.mobile.showPageLoadingMsg();
     // String to lower case and UTF-8 format
     needle = encodeURIComponent(search_string.toLowerCase());
@@ -48,7 +49,6 @@ function searchSong(search_string) {
 // Runs when data from Spotify Web API is loaded
 function onSpotifyResult(result) {
     var data = parseSpotifyData(result);
-    $("#searchResult").html("");
     $("#searchResult").append(genGrid(data));
     $.mobile.hidePageLoadingMsg();
 }
