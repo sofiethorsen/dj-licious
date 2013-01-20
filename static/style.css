@@ -13,17 +13,16 @@ h2 {
 }
 
 #mainContainer {
-	height: 100px;
-	overflow: hidden;
+		height: 100px;
+	width: 100%;
+	clear:both;
+	min-width: 320px;
 	background-color: #7EC42E;
 	padding: 15px;
 }
 
 #mainImgContainer {
-	height: 100px;
-	width: 100%;
-	clear:both;
-	min-width: 320px;
+	float: left;
 }
 
 #mainImgContainer img {
