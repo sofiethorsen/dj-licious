@@ -45,14 +45,14 @@
 }
 
 .voteUp{
-	background-size:30px 30px;
-	background-repeat:no-repeat;
+	width:30px;
+	height:30px;
 	background-image: url("http://10.48.18.111/static/img/upvote-small.png");
 }
 
 .voteDown {
-	background-size:30px 30px;
-	background-repeat:no-repeat;
+	width:30px;
+	height:30px;
 	background-image: url("http://10.48.18.111/static/img/downvote-small.png");
 }
 
