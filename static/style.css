@@ -2,6 +2,10 @@
 	background-color: #404040;
 }
 
+.ui-content {
+	padding: 0px;
+}
+
 #mainContainer {
 	height: 100px;
 	width: 100%;
@@ -48,13 +52,13 @@
 .voteUp{
 	background-size:30px 30px;
 	background-repeat:no-repeat;
-	background-image: url("http://10.48.18.111:8080/static/img/upvote-small.png");
+	background-image: url("http://10.48.18.111/static/img/upvote-small.png");
 }
 
 .voteDown {
 	background-size:30px 30px;
 	background-repeat:no-repeat;
-	background-image: url("http://10.48.18.111:8080/static/img/downvote-small.png");
+	background-image: url("http://10.48.18.111/static/img/downvote-small.png");
 }
 
 
