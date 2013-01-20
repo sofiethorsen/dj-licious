@@ -12,7 +12,7 @@ function callAPI(api_function, callback_function) {
 }
 
 function checkServer(){
-	getPlaylist()
+	getPlaylist();
 }
 
 
@@ -23,6 +23,7 @@ function vote(href, vote) {
 }
 
 function onVoteResult(data){
+	checkServer();
 }
 
 function addSong(href) {

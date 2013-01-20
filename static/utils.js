@@ -104,9 +104,9 @@ function generateQueue(data) {
         builder += imgSrc;
         builder += "\"></div>";
 
-        builder += "<div class=\"queueTextContainer\">";
+        builder += "<div class=\"queueTextContainer\"><h2>";
         builder += tracks[i].track;
-        builder += "</br>"
+        builder += "</h2></br>"
         builder += tracks[i].artist;
         builder += "</div>";
 
