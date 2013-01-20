@@ -57,7 +57,7 @@ function onResultPlaylist(data) {
 
 
 
-    $("#mainImgContainer").html('<img style="background:url('+imgSrc+')" src="'+"http://10.48.18.111:8080/static/img/play.png"+'" alt="" />');
+    $("#mainImgContainer").html('<img style="background:url('+imgSrc+')" src="'+"http://10.48.18.111/static/img/play.png"+'" alt="" />');
 	$("#mainTextContainer").html(data.result.currently_playing.track + " </br> " + data.result.currently_playing.artist);
 	$("#queueList").html(generateQueue(data));
 }
