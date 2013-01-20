@@ -32,6 +32,7 @@ function addSong(href) {
 
 function onResultAddsong(data){
 	console.log("onResultAddsong");
+	checkServer();
 }
 
 function removeSong(href) {
@@ -56,7 +57,7 @@ function onResultPlaylist(data) {
 
 
 
-    $("#mainImgContainer").html('<img style="background:url('+imgSrc+')" src="'+"play.png"+'" alt="" />');
+    $("#mainImgContainer").html('<img style="background:url('+imgSrc+')" src="'+"http://10.48.18.111:8080/static/img/downvote-small.png/play.png"+'" alt="" />');
 	$("#mainTextContainer").html(data.result.currently_playing.track + " </br> " + data.result.currently_playing.artist);
 	$("#queueList").html(generateQueue(data));
 }
