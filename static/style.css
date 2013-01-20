@@ -2,6 +2,8 @@
 	height: 100px;
 	width: 100%;
 	overflow: hidden;
+	background-color: "#7ec42";
+	padding: 15px;
 }
 
 #mainImgContainer {
