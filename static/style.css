@@ -17,7 +17,6 @@ h2 {
 	overflow: hidden;
 	background-color: #7EC42E;
 	padding: 15px;
-	clear:both;
 }
 
 #mainImgContainer {
@@ -36,7 +35,7 @@ h2 {
 .queueContainer {
 	height: 100px;
 	width: 100%;
-	float: left;
+	clear:both;
 }
 
 .queueImgContainer {
