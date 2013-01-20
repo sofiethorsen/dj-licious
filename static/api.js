@@ -5,8 +5,9 @@ var _lastestupdate = "";
 function callAPI(api_function, callback_function) {
 	var request = "http://10.48.18.111/api/"+api_function;
 	console.log("Called function: " + api_function);
-	$.getJSON(request, function(data){
+	$.getJSON(request, function(data, textStatus, xhr){
 		console.log(data);
+		console.log("Status: " + xhr.status);
 		callback_function(data);
 	});
 }
@@ -48,7 +49,7 @@ function getPlaylist() {
 function onResultPlaylist(data) {
 	var imgSrc = "";
 
-	if (data.result.currently_playing.adder === "") {
+	if (data.result.currently_playing.adder === null) {
 		imgSrc = "http://www.landinst.com/images/placeholder-100x100.png";
 	}
 	else {

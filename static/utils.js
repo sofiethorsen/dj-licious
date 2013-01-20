@@ -37,6 +37,7 @@ function onSongClick(href) {
 
 // Search for songs from Spotify
 function searchSong(search_string) {
+    $("#searchResult").html("");
     $.mobile.showPageLoadingMsg();
     // String to lower case and UTF-8 format
     needle = encodeURIComponent(search_string.toLowerCase());
@@ -48,7 +49,6 @@ function searchSong(search_string) {
 // Runs when data from Spotify Web API is loaded
 function onSpotifyResult(result) {
     var data = parseSpotifyData(result);
-    $("#searchResult").html("");
     $("#searchResult").append(genGrid(data));
     $.mobile.hidePageLoadingMsg();
 }
@@ -115,13 +115,11 @@ function generateQueue(data) {
 
 
         builder += "<div class=\"queueVoteContainer\">";
-        builder += "<a href='#' onClick='vote(\""+tracks[i].uri+"\", 1)'><div class=\"voteUp\"></div></a>";
-        builder += "<a href='#' onClick='vote(\""+tracks[i].uri+"\", -1)'><div class=\"voteDown\"></div></a>";
+        builder += "<a href='#' onClick='vote(\""+tracks[i].uri+"\", 1)'><i class=\"icon-arrow-up icon-2x\" /></a>"
+        builder += "<div>" + tracks[i].vote_rating + "</div>";
+        builder += "<a href='#' onClick='vote(\""+tracks[i].uri+"\", -1)'><i class=\"icon-arrow-down icon-2x\" /></a>"
         builder += "</div>";
-        
-        builder += "<div class=\"queueNumVoteContainer\">";
-        builder += tracks[i].vote_rating;
-        builder += "</div>";
+
         builder += "</div>";
     }
 
