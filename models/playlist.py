@@ -1,6 +1,7 @@
 from datetime import datetime
 from mongoengine import (Document, DateTimeField, StringField, IntField, ListField, DictField)
 from random import choice
+from utils import multikeysort
 
 class Playlist(Document):
     backup_playlist = StringField()
@@ -102,10 +103,9 @@ class Playlist(Document):
         super(Playlist, self).save()
         return track
 
+
     def update_que(self):
-        pass
-        # self.tracks = sorted(self.tracks, key=lambda k: (k['vote_rating'], k['added']))
-        # playlist = sorted(playlist.tracks, key=lambda k: k['upvotes'])
+        self.tracks = multikeysort(self.tracks, ['-vote_rating', 'added'])
         self.updated = datetime.utcnow()
         super(Playlist, self).save()
 
