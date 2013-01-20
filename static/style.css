@@ -13,7 +13,7 @@ h2 {
 }
 
 #mainContainer {
-		height: 100px;
+	height: 100px;
 	width: 100%;
 	clear:both;
 	min-width: 320px;
@@ -29,13 +29,13 @@ h2 {
 }
 
 #mainTextContainer { 	
-	height: 100px;
+	height: 80px;
 	padding-left: 15px;
 	width: 50%;
 	float: left;
 	display: inline;
 	word-wrap: break-word;
-	line-height: 200%;
+	padding-top: 20px;
 }
 
 .queueContainer {
