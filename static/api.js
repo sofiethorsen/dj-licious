@@ -53,7 +53,10 @@ function onResultPlaylist(data) {
 		imgSrc = "https://graph.facebook.com/"+data.result.currently_playing.adder+"/picture?width=100&height=100";
 	}
 
-    $("#mainImgContainer").html('<img style="width: 100px; height: 100px" src="'+imgSrc+'"/>');
+
+
+
+    $("#mainImgContainer").html('<img style="background:url('+imgSrc+')" src="'+play.png+'" alt="" />');
 	$("#mainTextContainer").html(data.result.currently_playing.track + " </br> " + data.result.currently_playing.artist);
 	$("#queueList").html(generateQueue(data));
 }
