@@ -7,7 +7,7 @@ function callAPI(api_function, callback_function) {
 	console.log("Called function: " + api_function);
 	$.getJSON(request, function(data, textStatus, xhr){
 		console.log(data);
-		console.log(xhr);
+		console.log("Status: " + xhr.status);
 		callback_function(data);
 	});
 }
