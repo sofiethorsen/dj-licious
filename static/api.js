@@ -45,7 +45,7 @@ function onVoteResult(data){
 
 function addSong(href) {
 	var track = _TRACKS[getSpotifyId(href)];
-	callAPI("add-track/?playlist_hash="+_playlistId+"&facebook_id="+FB.user.id+"&artist="+track.artist+"&album="+track.album+"&uri="+href+"&track="+track.name, onResultAddsong);
+	callAPI("add-track/?playlist_hash="+_playlistId+"&facebook_id="+FB.user.id+"&artist="+escape(track.artist)+"&album="+escape(track.album)+"&uri="+href+"&track="+escape(track.name), onResultAddsong);
 }
 
 function onResultAddsong(data){
