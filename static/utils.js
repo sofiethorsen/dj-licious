@@ -112,14 +112,15 @@ function generateQueue(data) {
         builder += tracks[i].artist;
         builder += "</div>";
 
-        builder += "<div class=\"queueNumVoteContainer\">";
-        builder += tracks[i].vote_rating;
-        builder += "</div>";
 
 
         builder += "<div class=\"queueVoteContainer\">";
         builder += "<a href='#' onClick='vote(\""+tracks[i].uri+"\", 1)'><div class=\"voteUp\"></div></a>";
         builder += "<a href='#' onClick='vote(\""+tracks[i].uri+"\", -1)'><div class=\"voteDown\"></div></a>";
+        builder += "</div>";
+        
+        builder += "<div class=\"queueNumVoteContainer\">";
+        builder += tracks[i].vote_rating;
         builder += "</div>";
         builder += "</div>";
     }
