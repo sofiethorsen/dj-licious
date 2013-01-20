@@ -56,7 +56,7 @@ function onResultPlaylist(data) {
 
 
 
-    $("#mainImgContainer").html('<img style="background:url('+imgSrc+')" src="'+play.png+'" alt="" />');
+    $("#mainImgContainer").html('<img style="background:url('+imgSrc+')" src="'+"play.png"+'" alt="" />');
 	$("#mainTextContainer").html(data.result.currently_playing.track + " </br> " + data.result.currently_playing.artist);
 	$("#queueList").html(generateQueue(data));
 }
