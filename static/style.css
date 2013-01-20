@@ -37,22 +37,20 @@
 }
 
 .queueVoteContainer {
-	padding-left: 15px;
-	line-height: 200%;
 	height: 100px;
-	width: 100px;
+	width: 45px;
 	float: right;
 }
 
 .voteUp{
-	width:30px;
-	height:30px;
+	width:45px;
+	height:45px;
 	background-image: url("http://10.48.18.111/static/img/upvote-small.png");
 }
 
 .voteDown {
-	width:30px;
-	height:30px;
+	width:45px;
+	height:45px;
 	background-image: url("http://10.48.18.111/static/img/downvote-small.png");
 }
 
