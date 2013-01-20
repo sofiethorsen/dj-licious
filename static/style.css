@@ -46,6 +46,7 @@ h2 {
 	height: 100px;
 	padding-left: 15px;
 	float: left;
+	display: normal;
 	word-wrap: break-word;
 }
 
