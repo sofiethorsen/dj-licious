@@ -4,6 +4,8 @@ var _TRACKS = [];
 $(function() {
     console.log("Following playlist id:" + _playlistId);
     checkServer();
+    // Hide adressbar
+    window.scrollTo(0,1);
 
     $("#searchBar").submit(
         function (e) {
