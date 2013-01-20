@@ -17,6 +17,7 @@ h2 {
 	overflow: hidden;
 	background-color: #7EC42E;
 	padding: 15px;
+	clear:both;
 }
 
 #mainImgContainer {
