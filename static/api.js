@@ -4,12 +4,28 @@ var _lastestupdate = "";
 
 function callAPI(api_function, callback_function) {
 	var request = "http://10.48.18.111/api/"+api_function;
+
 	console.log("Called function: " + api_function);
-	$.getJSON(request, function(data, textStatus, xhr){
-		console.log(data);
-		console.log("Status: " + xhr.status);
-		callback_function(data);
-	});
+
+//	$.getJSON(request, function(data, textStatus, xhr){
+//		console.log(data);
+//		console.log("Status: " + xhr.status);
+//		callback_function(data);
+//	});
+
+
+	$.ajax({
+	    url: request,
+	    dataType: 'json',
+	    success: function( data ) {
+	      	console.log(data);
+		  	callback_function(data);
+	    },
+	    error: function( data ) {
+	    	console.log("ERROR!");
+	    	console.log(data);
+	    }
+  	});
 }
 
 function checkServer(){
