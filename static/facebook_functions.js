@@ -65,7 +65,7 @@ window.fbAsyncInit = function() {
 	$.mobile.showPageLoadingMsg();
 	FB.init({
 	    appId      : '239735496161666', // App ID
-	    channelUrl : 'http://bok.alexanderheldt.se:8080/client/', // Channel File
+	    channelUrl : 'http://10.48.18.111/client/', // Channel File
 	    status     : true, // check login status
 	    cookie     : true, // enable cookies to allow the server to access the session
 	    xfbml      : true  // parse XFBML

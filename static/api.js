@@ -3,7 +3,7 @@ var _lastestupdate = "";
 
 
 function callAPI(api_function, callback_function) {
-	var request = "http://bok.alexanderheldt.se:8080/api/"+api_function;
+	var request = "http://10.48.18.111/api/"+api_function;
 	console.log("Called function: " + api_function);
 	$.getJSON(request, function(data){
 		console.log(data);
@@ -12,7 +12,7 @@ function callAPI(api_function, callback_function) {
 }
 
 function checkServer(){
-	getPlaylist();
+	getPlaylist()
 }
 
 
@@ -24,10 +24,6 @@ function vote(href, vote) {
 
 function onVoteResult(data){
 }
-
-
-http://bok.alexanderheldt.se:8080/api/
-
 
 function addSong(href) {
 	var track = _TRACKS[getSpotifyId(href)];
