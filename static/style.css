@@ -20,20 +20,23 @@ h2 {
 }
 
 #mainImgContainer {
-	float: left;
+	height: 100px;
+	width: 100%;
+	clear:both;
+	min-width: 320px;
 }
 
 #mainImgContainer img {
 }
 
-#mainTextContainer {
+#mainTextContainer { 	
 	height: 100px;
-	word-wrap: break-word;
 	padding-left: 15px;
-	line-height: 200%;
-	width: 65%;
+	width: 50%;
 	float: left;
 	display: inline;
+	word-wrap: break-word;
+	line-height: 200%;
 }
 
 .queueContainer {
