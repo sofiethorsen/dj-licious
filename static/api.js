@@ -5,10 +5,11 @@ var _lastestupdate = "";
 function callAPI(api_function, callback_function) {
 	var request = "http://10.48.18.111/api/"+api_function;
 	console.log("Called function: " + api_function);
-	$.getJSON(request, function(data){
+	$.getJSON(request, function(data, textStatus, xhr){
 		console.log(data);
+		console.log(xhr);
 		callback_function(data);
-	}).error(function() { alert("error"); });
+	});
 }
 
 function checkServer(){
