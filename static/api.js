@@ -20,7 +20,7 @@ function checkServer(){
 
 function vote(href, vote) {
 	//API bok.alexanderheldt.se:8080/api/vote/<playlist_id>/<track_id>/<facebook_id>/<vote>
-	callAPI("vote/?playlist_id="+_playlistId+"&uri="+href+"&facebook_id="+FB.user.id+"&vote="+vote, onVoteResult);
+	callAPI("vote/?playlist_hash="+_playlistId+"&uri="+href+"&facebook_id="+FB.user.id+"&vote="+vote, onVoteResult);
 }
 
 function onVoteResult(data){
@@ -29,7 +29,7 @@ function onVoteResult(data){
 
 function addSong(href) {
 	var track = _TRACKS[getSpotifyId(href)];
-	callAPI("add-track/?playlist_id="+_playlistId+"&facebook_id="+FB.user.id+"&artist="+track.artist+"&album="+track.album+"&uri="+href+"&track="+track.name, onResultAddsong);
+	callAPI("add-track/?playlist_hash="+_playlistId+"&facebook_id="+FB.user.id+"&artist="+track.artist+"&album="+track.album+"&uri="+href+"&track="+track.name, onResultAddsong);
 }
 
 function onResultAddsong(data){
@@ -43,7 +43,7 @@ function removeSong(href) {
 
 
 function getPlaylist() {
-	callAPI("get-playlist/?playlist_id="+_playlistId, onResultPlaylist);
+	callAPI("get-playlist/?playlist_hash="+_playlistId, onResultPlaylist);
 }
 
 function onResultPlaylist(data) {
