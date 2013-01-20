@@ -8,7 +8,7 @@ function callAPI(api_function, callback_function) {
 	$.getJSON(request, function(data){
 		console.log(data);
 		callback_function(data);
-	});
+	}).error(function() { alert("error"); });
 }
 
 function checkServer(){
