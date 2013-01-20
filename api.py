@@ -55,8 +55,6 @@ def get_playlist():
         currently_playing=currently_playing,
         tracks=playlist.tracks)
 
-    playlist.update_que()
-
     return jsonify(result=result)
 
 
@@ -73,6 +71,7 @@ def url_add_track():
 
     playlist = Playlist.objects(id=playlist_arg).first()
     playlist.add_track(facebook_id_arg, track_arg, artist_arg, album_arg, uri_arg)
+    playlist.update_que()
     return jsonify(result='Added track.')
 
 
@@ -83,6 +82,7 @@ def next_track():
     playlist = Playlist.objects(id=playlist_arg).first()
     next_track = playlist.get_next_track()
     result = dict(track=next_track['track'], artist=next_track['artist'], album=next_track['album'], uri=next_track['uri'])
+    playlist.update_que()
     return jsonify(result=result)
 
 
@@ -95,6 +95,7 @@ def add_vote():
 
     playlist = Playlist.objects(id=playlist_arg).first()
     playlist.vote(uri_arg, facebook_id_arg, vote_arg)
+    playlist.update_que()
     return jsonify(result='Voted on track.')
 
 
