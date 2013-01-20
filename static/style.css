@@ -27,9 +27,13 @@ h2 {
 }
 
 #mainTextContainer {
+	height: 100px;
+	word-wrap: break-word;
 	padding-left: 15px;
 	line-height: 200%;
+	width: 65%;
 	float: left;
+	display: inline;
 }
 
 .queueContainer {
