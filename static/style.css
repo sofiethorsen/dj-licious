@@ -46,8 +46,9 @@ h2 {
 .queueTextContainer {
 	height: 100px;
 	padding-left: 15px;
+	width: 50%;
 	float: left;
-	display: normal;
+	display: inline;
 	word-wrap: break-word;
 }
 
