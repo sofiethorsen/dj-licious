@@ -29,13 +29,13 @@ h2 {
 }
 
 #mainTextContainer { 	
-	height: 80px;
+	height: 100px;
 	padding-left: 15px;
 	width: 50%;
 	float: left;
 	display: inline;
 	word-wrap: break-word;
-	padding-top: 20px;
+	
 }
 
 .queueContainer {
@@ -50,13 +50,13 @@ h2 {
 }
 
 .queueTextContainer {
-	height: 100px;
+	height: 90px;
 	padding-left: 15px;
 	width: 50%;
 	float: left;
 	display: inline;
 	word-wrap: break-word;
-	line-height: 200%;
+	padding-top: 10px;
 }
 
 .queueNumVoteContainer {
