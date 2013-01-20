@@ -7,7 +7,7 @@ class Playlist(Document):
     tracks = ListField()
     currently_playing = DictField()
     adder = StringField()
-    updated = DateTimeField()
+    updated = DateTimeField(default=datetime.utcnow().strftime('%Y-%-m-%d %H:%M:%S'))
 
     meta = {
         'allow_inheritance': False,
