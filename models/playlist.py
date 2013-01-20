@@ -48,14 +48,14 @@ class Playlist(Document):
             if track['uri'] == uri:
                 has_voted = False
                 track['vote_rating'] = 0
-                for i, votee in enumerate(track['voters']):
+                for j, votee in enumerate(track['voters']):
                     if votee['votee'] == facebook_id:
                         if int(vote) == 0:
-                            self.tracks[0]['voters'].pop(i)
+                            self.tracks[i]['voters'].pop(i)
                             has_voted = True
                             print 'removed vote.'
                         else:
-                            self.tracks[0]['voters'][i]['vote'] = int(vote)
+                            self.tracks[i]['voters'][j]['vote'] = int(vote)
                             has_voted = True
                             print 'updated vote.'
 
