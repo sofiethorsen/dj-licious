@@ -25,7 +25,7 @@ def create_playlist():
 
 @app.route('/api/get-playlist/')
 def get_playlist():
-    playlist_arg = request.args.get('playlish_hash')
+    playlist_arg = request.args.get('playlist_hash')
     playlist = Playlist.objects(playlist_hash=playlist_arg).first()
 
     if playlist.currently_playing:        
@@ -60,7 +60,7 @@ def get_playlist():
 
 @app.route('/api/add-track/')
 def url_add_track():
-    playlist_arg = request.args.get('playlish_hash')
+    playlist_arg = request.args.get('playlist_hash')
     facebook_id_arg = request.args.get('facebook_id')
     track_arg = request.args.get('track')
     artist_arg = request.args.get('artist')
@@ -69,7 +69,7 @@ def url_add_track():
 
     print 'track_arg', track_arg
 
-    playlist = Playlist.objects(playlist_hash=playlish_hash).first()
+    playlist = Playlist.objects(playlist_hash=playlist_hash).first()
     playlist.add_track(facebook_id_arg, track_arg, artist_arg, album_arg, uri_arg)
     playlist.update_que()
     return jsonify(result='Added track.')
@@ -77,7 +77,7 @@ def url_add_track():
 
 @app.route('/api/next-track/')
 def next_track():
-    playlist_arg = request.args.get('playlish_hash')
+    playlist_arg = request.args.get('playlist_hash')
 
     playlist = Playlist.objects(playlist_hash=playlist_arg).first()
     next_track = playlist.get_next_track()
@@ -88,7 +88,7 @@ def next_track():
 
 @app.route('/api/vote/')
 def add_vote():
-    playlist_arg = request.args.get('playlish_hash')
+    playlist_arg = request.args.get('playlist_hash')
     uri_arg = request.args.get('uri')
     facebook_id_arg = request.args.get('facebook_id')
     vote_arg = request.args.get('vote')
@@ -101,7 +101,7 @@ def add_vote():
 
 @app.route('/api/updated/')
 def check_update():
-    playlist_arg = request.args.get('playlish_hash')
+    playlist_arg = request.args.get('playlist_hash')
 
     playlist = Playlist.objects(playlist_hash=playlist_arg).first()
     result = playlist.updated.strftime('%Y-%M-%d %H:%M:%S')
@@ -109,9 +109,9 @@ def check_update():
 
 
 
-@app.route('/<playlish_hash>')
-def client(playlish_hash):
-     return render_template('app.html', playlish_hash=playlish_hash)
+@app.route('/<playlist_hash>')
+def client(playlist_hash):
+     return render_template('app.html', playlist_hash=playlist_hash)
 
 
 if __name__ == "__main__":
