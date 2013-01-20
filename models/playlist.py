@@ -2,12 +2,15 @@ from datetime import datetime
 from mongoengine import (Document, DateTimeField, StringField, IntField, ListField, DictField)
 from random import choice
 from utils import multikeysort
+import hashlib
 
 class Playlist(Document):
     backup_playlist = StringField()
+    playlist_hash = StringField()
     tracks = ListField()
     currently_playing = DictField()
     adder = StringField()
+
     updated = DateTimeField(default=datetime.utcnow().strftime('%Y-%-m-%d %H:%M:%S'))
 
     meta = {
@@ -19,6 +22,9 @@ class Playlist(Document):
 
     def __init__(self, *args, **kwargs):
             super(Playlist, self).__init__(*args, **kwargs)
+            playlist_hash = hashlib.sha1(self.backup_playlist).hexdigest()
+            self.playlist_hash = playlist_hash[:4]
+            self.save()
 
     def add_track(self, facebook_id, track, artist, album, uri):
         matches = 0
@@ -66,7 +72,6 @@ class Playlist(Document):
         for i, track in enumerate(self.tracks):
             track['vote_rating'] = 0
             for vote in track['voters']:
-                print vote['vote']
                 self.tracks[i]['vote_rating'] += int(vote['vote'])
 
         self.update_que()

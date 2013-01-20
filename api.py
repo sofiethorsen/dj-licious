@@ -14,19 +14,19 @@ def create_playlist():
 
     playlist_query = Playlist.objects(backup_playlist=backup_playlist_arg).first()
     if playlist_query:
-        result = str(playlist_query.id)
+        result = str(playlist_query.playlist_hash)
     else:
         playlist = Playlist(backup_playlist=backup_playlist_arg).save()
         playlist_query = Playlist.objects(backup_playlist=backup_playlist_arg).first()
-        
-    result = str(playlist_query.id)
+    result = playlist_query.playlist_hash
+
     return jsonify(result=result)
 
 
 @app.route('/api/get-playlist/')
 def get_playlist():
-    playlist_arg = request.args.get('playlist_id')
-    playlist = Playlist.objects(id=playlist_arg).first()
+    playlist_arg = request.args.get('playlish_hash')
+    playlist = Playlist.objects(playlist_hash=playlist_arg).first()
 
     if playlist.currently_playing:        
         currently_playing = dict(
@@ -60,7 +60,7 @@ def get_playlist():
 
 @app.route('/api/add-track/')
 def url_add_track():
-    playlist_arg = request.args.get('playlist_id')
+    playlist_arg = request.args.get('playlish_hash')
     facebook_id_arg = request.args.get('facebook_id')
     track_arg = request.args.get('track')
     artist_arg = request.args.get('artist')
@@ -69,7 +69,7 @@ def url_add_track():
 
     print 'track_arg', track_arg
 
-    playlist = Playlist.objects(id=playlist_arg).first()
+    playlist = Playlist.objects(playlist_hash=playlish_hash).first()
     playlist.add_track(facebook_id_arg, track_arg, artist_arg, album_arg, uri_arg)
     playlist.update_que()
     return jsonify(result='Added track.')
@@ -77,9 +77,9 @@ def url_add_track():
 
 @app.route('/api/next-track/')
 def next_track():
-    playlist_arg = request.args.get('playlist_id')
+    playlist_arg = request.args.get('playlish_hash')
 
-    playlist = Playlist.objects(id=playlist_arg).first()
+    playlist = Playlist.objects(playlist_hash=playlist_arg).first()
     next_track = playlist.get_next_track()
     result = dict(track=next_track['track'], artist=next_track['artist'], album=next_track['album'], uri=next_track['uri'])
     playlist.update_que()
@@ -88,12 +88,12 @@ def next_track():
 
 @app.route('/api/vote/')
 def add_vote():
-    playlist_arg = request.args.get('playlist_id')
+    playlist_arg = request.args.get('playlish_hash')
     uri_arg = request.args.get('uri')
     facebook_id_arg = request.args.get('facebook_id')
     vote_arg = request.args.get('vote')
 
-    playlist = Playlist.objects(id=playlist_arg).first()
+    playlist = Playlist.objects(playlist_hash=playlist_arg).first()
     playlist.vote(uri_arg, facebook_id_arg, vote_arg)
     playlist.update_que()
     return jsonify(result='Voted on track.')
@@ -101,17 +101,17 @@ def add_vote():
 
 @app.route('/api/updated/')
 def check_update():
-    playlist_arg = request.args.get('playlist_id')
+    playlist_arg = request.args.get('playlish_hash')
 
-    playlist = Playlist.objects(id=playlist_arg).first()
+    playlist = Playlist.objects(playlist_hash=playlist_arg).first()
     result = playlist.updated.strftime('%Y-%M-%d %H:%M:%S')
     return jsonify(result=result)
 
 
 
-@app.route('/client/<playlist_id>')
-def client(playlist_id):
-     return render_template('app.html', playlist_id=playlist_id)
+@app.route('/<playlish_hash>')
+def client(playlish_hash):
+     return render_template('app.html', playlish_hash=playlish_hash)
 
 
 if __name__ == "__main__":
