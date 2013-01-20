@@ -49,7 +49,7 @@ function getPlaylist() {
 function onResultPlaylist(data) {
 	var imgSrc = "";
 
-	if (data.result.currently_playing.adder === "") {
+	if (data.result.currently_playing.adder === null) {
 		imgSrc = "http://www.landinst.com/images/placeholder-100x100.png";
 	}
 	else {
